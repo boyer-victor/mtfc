@@ -1,0 +1,333 @@
+---
+import { ZENPLANNER_EMBED_URL } from '../config/site';
+
+const pathname = Astro.url.pathname;
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/schedule', label: 'Schedule' },
+  { href: '/coaches', label: 'Coaches' },
+  { href: '/about', label: 'About' },
+  { href: '/gallery', label: 'Gallery' },
+  { href: '/announcements', label: 'Announcements' },
+];
+
+function isActive(href: string) {
+  if (href === '/') return pathname === '/';
+  return pathname.startsWith(href);
+}
+---
+
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner container">
+    <!-- Logo -->
+    <a href="/" class="nav-logo" aria-label="Metro Tacoma Fencing Club — Home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 48" fill="none" class="logo-svg" aria-hidden="true">
+        <line x1="4" y1="44" x2="32" y2="6" stroke="#00e085" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="12.5" cy="34" r="4" stroke="#00e085" stroke-width="1.5" fill="none"/>
+        <circle cx="6" cy="42" r="1.5" fill="#00e085"/>
+        <text x="42" y="33" font-family="Plus Jakarta Sans, sans-serif" font-weight="600" font-size="22" letter-spacing="-0.03em" fill="#f1f7f6">MTFC</text>
+        <text x="43" y="43" font-family="Plus Jakarta Sans, sans-serif" font-weight="400" font-size="7.5" letter-spacing="0.18em" fill="#3fb89f">METRO TACOMA</text>
+      </svg>
+    </a>
+
+    <!-- Desktop nav links -->
+    <ul class="nav-links" role="list">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class={`nav-link ${isActive(link.href) ? 'nav-link--active' : ''}`}
+            aria-current={isActive(link.href) ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- CTA button -->
+    <a href={ZENPLANNER_EMBED_URL} class="btn btn-primary nav-cta" target="_blank" rel="noopener noreferrer">
+      Join Now
+    </a>
+
+    <!-- Mobile hamburger -->
+    <button
+      class="nav-hamburger"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      id="hamburger-btn"
+    >
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile menu overlay -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation menu" aria-modal="true" hidden>
+  <div class="mobile-menu-inner">
+    <button class="mobile-close" aria-label="Close navigation menu" id="close-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+
+    <ul class="mobile-links" role="list">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class={`mobile-link ${isActive(link.href) ? 'mobile-link--active' : ''}`}
+            aria-current={isActive(link.href) ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <a href={ZENPLANNER_EMBED_URL} class="btn btn-primary mobile-cta" target="_blank" rel="noopener noreferrer">
+      Join Now
+    </a>
+  </div>
+</div>
+
+<script>
+  const hamburger = document.getElementById('hamburger-btn');
+  const closeBtn = document.getElementById('close-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  function openMenu() {
+    mobileMenu?.removeAttribute('hidden');
+    hamburger?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    mobileMenu?.setAttribute('hidden', '');
+    hamburger?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  hamburger?.addEventListener('click', openMenu);
+  closeBtn?.addEventListener('click', closeMenu);
+
+  mobileMenu?.addEventListener('click', (e) => {
+    if (e.target === mobileMenu) closeMenu();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  // Scroll-based background
+  const nav = document.querySelector('.nav') as HTMLElement | null;
+  window.addEventListener('scroll', () => {
+    if (nav) {
+      nav.classList.toggle('nav--scrolled', window.scrollY > 20);
+    }
+  });
+</script>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: var(--nav-height);
+    transition: background var(--transition-base), backdrop-filter var(--transition-base);
+  }
+
+  .nav--scrolled {
+    background: rgba(10, 14, 14, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .nav-inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .nav-logo {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-svg {
+    height: 36px;
+    width: auto;
+  }
+
+  .nav-links {
+    display: none;
+    align-items: center;
+    gap: var(--space-1);
+    margin-left: auto;
+  }
+
+  @media (min-width: 1024px) {
+    .nav-links { display: flex; }
+  }
+
+  .nav-link {
+    display: block;
+    padding: var(--space-2) var(--space-3);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+    border-radius: var(--radius-sm);
+    transition: color var(--transition-fast);
+    letter-spacing: 0.01em;
+  }
+
+  .nav-link:hover,
+  .nav-link--active {
+    color: var(--color-text-primary);
+  }
+
+  .nav-link--active {
+    position: relative;
+  }
+
+  .nav-link--active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: var(--space-3);
+    right: var(--space-3);
+    height: 1.5px;
+    background: var(--color-accent);
+    border-radius: 1px;
+  }
+
+  .nav-cta {
+    display: none;
+    margin-left: var(--space-4);
+    padding: 0.5rem 1.25rem;
+    font-size: 0.875rem;
+  }
+
+  @media (min-width: 1024px) {
+    .nav-cta { display: inline-flex; }
+  }
+
+  /* Hamburger */
+  .nav-hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    margin-left: auto;
+    padding: var(--space-2);
+    border-radius: var(--radius-sm);
+    transition: background var(--transition-fast);
+  }
+
+  .nav-hamburger:hover {
+    background: var(--color-bg-elevated);
+  }
+
+  @media (min-width: 1024px) {
+    .nav-hamburger { display: none; }
+  }
+
+  .hamburger-line {
+    display: block;
+    width: 100%;
+    height: 1.5px;
+    background: var(--color-text-primary);
+    border-radius: 1px;
+    transition: transform var(--transition-base), opacity var(--transition-base);
+  }
+
+  /* Mobile menu */
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(10, 14, 14, 0.96);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    animation: fadeIn var(--transition-base) ease;
+  }
+
+  .mobile-menu[hidden] {
+    display: none;
+  }
+
+  .mobile-menu-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: var(--space-8);
+    padding: var(--space-8);
+    animation: fadeUp var(--transition-slow) ease;
+  }
+
+  .mobile-close {
+    position: absolute;
+    top: var(--space-6);
+    right: var(--space-6);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    color: var(--color-text-secondary);
+    transition: color var(--transition-fast), background var(--transition-fast);
+  }
+
+  .mobile-close:hover {
+    color: var(--color-text-primary);
+    background: var(--color-bg-elevated);
+  }
+
+  .mobile-close svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .mobile-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    text-align: center;
+  }
+
+  .mobile-link {
+    display: block;
+    padding: var(--space-3) var(--space-8);
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.02em;
+    color: var(--color-text-secondary);
+    transition: color var(--transition-fast);
+  }
+
+  .mobile-link:hover,
+  .mobile-link--active {
+    color: var(--color-accent);
+  }
+
+  .mobile-cta {
+    font-size: 1rem;
+    padding: 0.875rem 2.5rem;
+  }
+</style>
