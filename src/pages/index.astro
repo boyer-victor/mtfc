@@ -6,36 +6,36 @@ import CoachCard from '../components/CoachCard.astro';
 import { announcements } from '../data/announcements';
 import { ZENPLANNER_EMBED_URL } from '../config/site';
 
-import coach1 from '../assets/images/placeholder-coach-1.svg';
-import coach2 from '../assets/images/placeholder-coach-2.svg';
-import coach3 from '../assets/images/placeholder-coach-3.svg';
+import coachChung from '../assets/images/coach-kwangsuk-chung.webp';
+import coachKim from '../assets/images/coach-jisun-kim.webp';
+import coachTobias from '../assets/images/coach-tobias-lee.webp';
 
 const recentAnnouncements = announcements.slice(0, 3);
 
 const coaches = [
   {
-    name: 'Marcus Reid',
-    title: 'Head Coach · Foil',
-    weapons: ['Foil'],
-    bio: 'Former Division I collegiate fencer and US national team alternate. Marcus has coached at MTFC for over a decade, developing dozens of nationally-ranked juniors and adult competitors.',
-    image: coach1,
-    imageAlt: 'Coach Marcus Reid, Head Foil Coach',
-  },
-  {
-    name: 'Kenji Tanaka',
-    title: 'Épée Coach',
-    weapons: ['Épée'],
-    bio: 'Three-time regional champion in épée with a background in sports science. Kenji brings a systematic, biomechanics-first approach that produces technically precise, adaptable fencers.',
-    image: coach2,
-    imageAlt: 'Coach Kenji Tanaka, Épée Coach',
-  },
-  {
-    name: 'Sara Lee',
-    title: 'Junior Program Director',
+    name: 'Kwangsuk Chung',
+    title: 'Head Coach',
     weapons: ['Foil', 'Épée'],
-    bio: 'Certified USA Fencing coach with a specialization in youth development. Sara leads all junior programming and is known for building athlete confidence alongside technical skill.',
-    image: coach3,
-    imageAlt: 'Coach Sara Lee, Junior Program Director',
+    bio: 'Kwangsuk leads MTFC\'s coaching program with decades of experience in Olympic-style sport fencing. A USA Fencing certified instructor, he has guided athletes of all levels to competitive success.',
+    image: coachChung,
+    imageAlt: 'Kwangsuk Chung, Head Coach',
+  },
+  {
+    name: 'Jisun Kim',
+    title: 'Head Épée Coach',
+    weapons: ['Épée'],
+    bio: 'Jisun is MTFC\'s Head Épée Coach, bringing deep technical expertise to every session. Her patient, detail-oriented approach develops fencers from first touch to the national circuit.',
+    image: coachKim,
+    imageAlt: 'Jisun Kim, Head Épée Coach',
+  },
+  {
+    name: 'Tobias Lee',
+    title: 'Coach',
+    weapons: ['Foil', 'Épée'],
+    bio: 'Tobias specializes in developing footwork fundamentals and tactical awareness, working with competitive and recreational fencers of all skill levels.',
+    image: coachTobias,
+    imageAlt: 'Tobias Lee, Coach',
   },
 ];
 

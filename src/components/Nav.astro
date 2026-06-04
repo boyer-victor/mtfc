@@ -1,5 +1,6 @@
 ---
 import { ZENPLANNER_EMBED_URL } from '../config/site';
+import logoRaw from '../assets/icons/logo.svg?raw';
 
 const pathname = Astro.url.pathname;
 
@@ -22,13 +23,7 @@ function isActive(href: string) {
   <div class="nav-inner container">
     <!-- Logo -->
     <a href="/" class="nav-logo" aria-label="Metro Tacoma Fencing Club — Home">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 48" fill="none" class="logo-svg" aria-hidden="true">
-        <line x1="4" y1="44" x2="32" y2="6" stroke="#00e085" stroke-width="1.5" stroke-linecap="round"/>
-        <circle cx="12.5" cy="34" r="4" stroke="#00e085" stroke-width="1.5" fill="none"/>
-        <circle cx="6" cy="42" r="1.5" fill="#00e085"/>
-        <text x="42" y="33" font-family="Plus Jakarta Sans, sans-serif" font-weight="600" font-size="22" letter-spacing="-0.03em" fill="#f1f7f6">MTFC</text>
-        <text x="43" y="43" font-family="Plus Jakarta Sans, sans-serif" font-weight="400" font-size="7.5" letter-spacing="0.18em" fill="#3fb89f">METRO TACOMA</text>
-      </svg>
+      <span class="logo-svg" aria-hidden="true" set:html={logoRaw}></span>
     </a>
 
     <!-- Desktop nav links -->
@@ -164,9 +159,10 @@ function isActive(href: string) {
     align-items: center;
   }
 
-  .logo-svg {
-    height: 36px;
+  .logo-svg :global(svg) {
+    height: 92px;
     width: auto;
+    display: block;
   }
 
   .nav-links {

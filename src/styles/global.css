@@ -20,16 +20,16 @@
   --color-pistachio: #b0d4ca;
 
   /* Semantic tokens */
-  --color-bg: var(--color-rich-black);
-  --color-bg-surface: #0e1414;
-  --color-bg-elevated: #111818;
+  --color-bg: #0d2620;
+  --color-bg-surface: #103028;
+  --color-bg-elevated: #153a30;
   --color-text-primary: var(--color-anti-flash-white);
   --color-text-secondary: var(--color-pistachio);
   --color-text-muted: var(--color-stone);
   --color-accent: var(--color-caribbean-green);
   --color-accent-dim: var(--color-mountain-meadow);
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-accent: rgba(0, 224, 133, 0.25);
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-accent: rgba(0, 224, 133, 0.3);
 
   /* Typography */
   --font-primary: 'Plus Jakarta Sans', sans-serif;
@@ -54,7 +54,7 @@
 
   /* Layout */
   --max-width: 1280px;
-  --nav-height: 72px;
+  --nav-height: 108px;
 
   /* Radii */
   --radius-sm: 4px;

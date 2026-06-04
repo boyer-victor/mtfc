@@ -8,35 +8,41 @@ interface Props {
   bio: string;
   image: ImageMetadata;
   imageAlt: string;
+  bookable?: boolean;
 }
 
-const { name, title, weapons, bio, image, imageAlt } = Astro.props;
+const { name, title, weapons, bio, image, imageAlt, bookable = false } = Astro.props;
 ---
 
 <article class="coach-card">
   <div class="coach-photo">
-    <Image src={image} alt={imageAlt} width={400} height={400} class="coach-img" />
+    <Image src={image} alt={imageAlt} width={400} height={533} class="coach-img" />
   </div>
 
   <div class="coach-info">
     <div class="coach-weapons">
-      {weapons.map((w) => (
-        <span class="weapon-badge">{w}</span>
-      ))}
+      {weapons.map((w) => {
+        const parts = w.split(' · ');
+        const weapon = parts.length > 1 ? parts[1] : parts[0];
+        const cert = parts.length > 1 ? parts[0] : undefined;
+        return <span class="weapon-badge" title={cert}>{weapon}</span>;
+      })}
     </div>
 
     <h3 class="coach-name">{name}</h3>
     <p class="coach-title">{title}</p>
     <p class="coach-bio">{bio}</p>
 
-    <a
-      href="#"
-      class="btn btn-outline coach-cta"
-      data-todo="cal.com"
-      aria-label={`Book a private lesson with ${name}`}
-    >
-      Book a Lesson
-    </a>
+    {bookable && (
+      <a
+        href="#"
+        class="btn btn-outline coach-cta"
+        data-todo="cal.com"
+        aria-label={`Book a private lesson with ${name}`}
+      >
+        Book a Lesson
+      </a>
+    )}
   </div>
 </article>
 
@@ -58,7 +64,7 @@ const { name, title, weapons, bio, image, imageAlt } = Astro.props;
 
   .coach-photo {
     position: relative;
-    aspect-ratio: 1;
+    aspect-ratio: 3 / 4;
     overflow: hidden;
     background: var(--color-dark-green);
   }

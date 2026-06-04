@@ -1,5 +1,6 @@
 ---
 import { SITE_NAME, SITE_TAGLINE, SOCIAL, CONTACT_EMAIL, LOCATION } from '../config/site';
+import logoRaw from '../assets/icons/logo.svg?raw';
 ---
 
 <footer class="footer">
@@ -8,13 +9,7 @@ import { SITE_NAME, SITE_TAGLINE, SOCIAL, CONTACT_EMAIL, LOCATION } from '../con
     <!-- Brand column -->
     <div class="footer-brand">
       <a href="/" class="footer-logo" aria-label="Metro Tacoma Fencing Club — Home">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 48" fill="none" class="logo-svg" aria-hidden="true">
-          <line x1="4" y1="44" x2="32" y2="6" stroke="#00e085" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="12.5" cy="34" r="4" stroke="#00e085" stroke-width="1.5" fill="none"/>
-          <circle cx="6" cy="42" r="1.5" fill="#00e085"/>
-          <text x="42" y="33" font-family="Plus Jakarta Sans, sans-serif" font-weight="600" font-size="22" letter-spacing="-0.03em" fill="#f1f7f6">MTFC</text>
-          <text x="43" y="43" font-family="Plus Jakarta Sans, sans-serif" font-weight="400" font-size="7.5" letter-spacing="0.18em" fill="#3fb89f">METRO TACOMA</text>
-        </svg>
+        <span class="logo-svg" aria-hidden="true" set:html={logoRaw}></span>
       </a>
       <p class="footer-tagline">{SITE_TAGLINE}</p>
 
@@ -30,12 +25,6 @@ import { SITE_NAME, SITE_TAGLINE, SOCIAL, CONTACT_EMAIL, LOCATION } from '../con
         <a href={SOCIAL.facebook} class="social-link" target="_blank" rel="noopener noreferrer" aria-label="MTFC on Facebook">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-        <a href={SOCIAL.youtube} class="social-link" target="_blank" rel="noopener noreferrer" aria-label="MTFC on YouTube">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-            <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
           </svg>
         </a>
       </div>
@@ -111,9 +100,10 @@ import { SITE_NAME, SITE_TAGLINE, SOCIAL, CONTACT_EMAIL, LOCATION } from '../con
     display: inline-flex;
   }
 
-  .logo-svg {
-    height: 34px;
+  .logo-svg :global(svg) {
+    height: 75px;
     width: auto;
+    display: block;
   }
 
   .footer-tagline {

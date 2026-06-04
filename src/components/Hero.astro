@@ -1,10 +1,14 @@
 ---
+import { Image } from 'astro:assets';
 import { SITE_TAGLINE, ZENPLANNER_EMBED_URL } from '../config/site';
+import heroBg from '../assets/images/hero.webp';
 ---
 
 <section class="hero" aria-label="Hero">
   <!-- Background composition -->
   <div class="hero-bg" aria-hidden="true">
+    <!-- Photo background -->
+    <Image src={heroBg} alt="" class="hero-bg-photo" loading="eager" />
     <!-- Mesh gradient layers -->
     <div class="bg-layer bg-layer--1"></div>
     <div class="bg-layer bg-layer--2"></div>
@@ -114,6 +118,16 @@ import { SITE_TAGLINE, ZENPLANNER_EMBED_URL } from '../config/site';
     position: absolute;
     inset: 0;
     pointer-events: none;
+  }
+
+  .hero-bg-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.18;
   }
 
   .bg-layer {
