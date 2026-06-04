@@ -1,6 +1,6 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
-import { CONTACT_EMAIL, LOCATION } from '../config/site';
+import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_HOURS, LOCATION } from '../config/site';
 
 const values = [
   {
@@ -61,15 +61,14 @@ const values = [
         <div class="mission-text">
           <span class="section-label">Our Mission</span>
           <h2 id="mission-heading">Built for Competitors,<br/>Open to Everyone</h2>
-          <!-- TODO: Replace with real copy -->
           <p>
-            Metro Tacoma Fencing Club was founded in 2008 by a group of competitive fencers who wanted a serious training environment in the South Sound — a place where athletes at every level could pursue the sport with real infrastructure and real coaching behind them.
+            Metro Tacoma Fencing Club (MTFC) has been serving the South Puget Sound since 1999. We specialize in Olympic-style sport fencing, offering quality training in foil and épée to all ages and experience levels.
           </p>
           <p>
-            Since then, MTFC has grown into one of the most active competitive clubs in the Pacific Northwest, sending athletes to regional, divisional, and national competitions every season. We offer foil and épée programs for adults and juniors, from first-day beginners to national-level competitors.
+            MTFC is a 501(c)3 tax-exempt organization affiliated with the Western Washington Division of USA Fencing. Our coaches are qualified instructors in all three fencing weapons.
           </p>
           <p>
-            The club operates out of a dedicated salle in Tacoma with a full strip layout, competition-grade equipment, and in-house armorer support. Every session is staffed — no drop-in without supervision, no unsanctioned sparring.
+            We pride ourselves on an inclusive, friendly, and relaxed atmosphere where recreational fencers, beginners, and competitive athletes all train together.
           </p>
         </div>
 
@@ -78,7 +77,7 @@ const values = [
           <div class="accent-line"></div>
           <div class="accent-stat-stack">
             <div class="accent-stat">
-              <span class="big-num">2008</span>
+              <span class="big-num">1999</span>
               <span class="big-label">Founded</span>
             </div>
             <div class="accent-stat">
@@ -121,22 +120,29 @@ const values = [
         <div class="location-text">
           <span class="section-label">Location &amp; Facility</span>
           <h2 id="location-heading">The Salle</h2>
-          <!-- TODO: Replace with real copy -->
           <p>
             Our training facility is a full-dedicated fencing salle — not a shared gym, not a rented floor. Permanent piste strips, competition lighting, and a full armorer bench on site.
           </p>
           <address class="location-address">
-            <!-- TODO: Replace with real address -->
-            <p>123 Placeholder Street</p>
+            <p>8629 S Tacoma Way</p>
             <p>{LOCATION}</p>
           </address>
-          <a href={`mailto:${CONTACT_EMAIL}`} class="contact-link">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.5"/>
-              <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-            {CONTACT_EMAIL}
-          </a>
+          <p class="location-hours">{CONTACT_HOURS}</p>
+          <div class="contact-links">
+            <a href={`mailto:${CONTACT_EMAIL}`} class="contact-link">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.5"/>
+                <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              {CONTACT_EMAIL}
+            </a>
+            <a href={`tel:${CONTACT_PHONE}`} class="contact-link">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 10.8 19.79 19.79 0 01.88 2.18 2 2 0 012.86.01h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+              {CONTACT_PHONE}
+            </a>
+          </div>
         </div>
 
         <!-- Map placeholder -->
@@ -398,6 +404,17 @@ const values = [
     font-size: 0.9rem;
     color: var(--color-text-primary);
     max-width: none;
+  }
+
+  .location-hours {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
   }
 
   .contact-link {
