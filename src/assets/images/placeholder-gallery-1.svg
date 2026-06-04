@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0e0e"/>
+      <stop offset="100%" stop-color="#0d3d34"/>
+    </linearGradient>
+    <linearGradient id="b1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00e085" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#00e085"/>
+      <stop offset="100%" stop-color="#00e085" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#g1)"/>
+  <!-- Two fencers in bout — facing each other -->
+  <!-- Left fencer (attack) -->
+  <g fill="#00e085" opacity="0.7">
+    <circle cx="220" cy="160" r="22"/>
+    <ellipse cx="217" cy="165" rx="15" ry="10" fill="#0a0e0e" opacity="0.6"/>
+    <path d="M205 182 L200 265 L220 265 L228 182 Z"/>
+    <path d="M222 195 L320 210 L322 205 L318 202 L222 188 Z"/>
+    <!-- Foil -->
+    <line x1="322" y1="207" x2="420" y2="215" stroke="#00e085" stroke-width="2" stroke-linecap="round"/>
+    <ellipse cx="322" cy="207" rx="6" ry="4" fill="#2cc295"/>
+    <path d="M202 195 L145 170 L143 175 L146 177 L202 200 Z"/>
+    <path d="M210 265 L195 340 L208 343 L222 268 Z"/>
+    <path d="M200 265 L182 338 L170 335 L188 263 Z"/>
+  </g>
+  <!-- Right fencer (parry) -->
+  <g fill="#2cc295" opacity="0.6">
+    <circle cx="580" cy="165" r="22"/>
+    <ellipse cx="577" cy="170" rx="15" ry="10" fill="#0a0e0e" opacity="0.6"/>
+    <path d="M567 187 L565 265 L582 265 L590 187 Z"/>
+    <!-- Parry arm -->
+    <path d="M570 200 L480 215 L476 210 L480 207 L570 193 Z"/>
+    <!-- Weapon parrying -->
+    <line x1="476" y1="212" x2="400" y2="230" stroke="#2cc295" stroke-width="2" stroke-linecap="round"/>
+    <ellipse cx="478" cy="212" rx="6" ry="4" fill="#3fb89f"/>
+    <path d="M586 200 L640 178 L642 183 L640 186 L586 205 Z"/>
+    <path d="M573 265 L565 340 L578 343 L585 268 Z"/>
+    <path d="M580 265 L590 338 L602 335 L593 263 Z"/>
+  </g>
+  <!-- Intersection — blades crossing -->
+  <line x1="400" y1="220" x2="425" y2="218" stroke="#00e085" stroke-width="3" opacity="0.9"/>
+  <circle cx="413" cy="219" r="6" fill="#00e085" opacity="0.4"/>
+  <!-- Floor line -->
+  <line x1="80" y1="360" x2="720" y2="360" stroke="#1a6b5f" stroke-width="1.5" opacity="0.5"/>
+  <!-- Piste lines -->
+  <line x1="200" y1="360" x2="200" y2="375" stroke="#1a6b5f" stroke-width="1.5" opacity="0.4"/>
+  <line x1="600" y1="360" x2="600" y2="375" stroke="#1a6b5f" stroke-width="1.5" opacity="0.4"/>
+  <!-- Label -->
+  <text x="30" y="560" font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="500" letter-spacing="0.12em" fill="#00e085" opacity="0.4">BOUT · FOIL</text>
+</svg>

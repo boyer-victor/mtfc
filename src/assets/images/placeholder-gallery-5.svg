@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <defs>
+    <linearGradient id="g5" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0e0e"/>
+      <stop offset="100%" stop-color="#0d4038"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#g5)"/>
+
+  <!-- Youth/junior class scene — multiple small fencers -->
+  <!-- Coach silhouette (taller) -->
+  <g fill="#00e085" opacity="0.55" transform="translate(100, 120)">
+    <circle cx="0" cy="0" r="24"/>
+    <rect x="-13" y="24" width="26" height="80" rx="6"/>
+    <path d="M12 40 L55 50 L57 45 L53 42 L12 33 Z"/>
+    <line x1="57" y1="47" x2="100" y2="44" stroke="#00e085" stroke-width="2" stroke-linecap="round"/>
+    <path d="-12 40 L-50 60 L-52 55 L-50 52 L-12 33 Z"/>
+    <rect x="-8" y="104" width="10" height="70" rx="5"/>
+    <rect x="4" y="104" width="10" height="70" rx="5"/>
+  </g>
+
+  <!-- Small fencer 1 -->
+  <g fill="#2cc295" opacity="0.7" transform="translate(280, 175)">
+    <circle cx="0" cy="0" r="16"/>
+    <rect x="-9" y="16" width="18" height="55" rx="4"/>
+    <path d="M8 25 L40 33 L41 29 L38 27 L8 19 Z"/>
+    <line x1="41" y1="31" x2="75" y2="29" stroke="#2cc295" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M-9 25 L-35 35 L-36 31 L-34 29 L-9 19 Z"/>
+    <rect x="-6" y="71" width="7" height="48" rx="3"/>
+    <rect x="3" y="71" width="7" height="48" rx="3"/>
+  </g>
+
+  <!-- Small fencer 2 -->
+  <g fill="#3fb89f" opacity="0.7" transform="translate(430, 185)">
+    <circle cx="0" cy="0" r="16"/>
+    <rect x="-9" y="16" width="18" height="52" rx="4"/>
+    <path d="-8 25 L-38 33 L-39 29 L-36 27 L-8 19 Z"/>
+    <line x1="-39" y1="31" x2="-72" y2="28" stroke="#3fb89f" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M9 26 L35 36 L36 32 L34 30 L9 20 Z"/>
+    <rect x="-6" y="68" width="7" height="46" rx="3"/>
+    <rect x="3" y="68" width="7" height="46" rx="3"/>
+  </g>
+
+  <!-- Small fencer 3 -->
+  <g fill="#b0d4ca" opacity="0.55" transform="translate(575, 190)">
+    <circle cx="0" cy="0" r="14"/>
+    <rect x="-8" y="14" width="16" height="48" rx="4"/>
+    <path d="M7 22 L36 30 L37 26 L34 24 L7 16 Z"/>
+    <line x1="37" y1="28" x2="65" y2="25" stroke="#b0d4ca" stroke-width="1.5" stroke-linecap="round"/>
+    <rect x="-5" y="62" width="6" height="42" rx="3"/>
+    <rect x="2" y="62" width="6" height="42" rx="3"/>
+  </g>
+
+  <!-- Small fencer 4 -->
+  <g fill="#1a8b6f" opacity="0.65" transform="translate(685, 195)">
+    <circle cx="0" cy="0" r="14"/>
+    <rect x="-8" y="14" width="16" height="48" rx="4"/>
+    <path d="-7 22 L-33 30 L-34 26 L-32 24 L-7 16 Z"/>
+    <line x1="-34" y1="28" x2="-62" y2="26" stroke="#1a8b6f" stroke-width="1.5" stroke-linecap="round"/>
+    <rect x="-5" y="62" width="6" height="42" rx="3"/>
+    <rect x="2" y="62" width="6" height="42" rx="3"/>
+  </g>
+
+  <!-- Floor line / piste -->
+  <line x1="60" y1="400" x2="740" y2="400" stroke="#1a6b5f" stroke-width="1.5" opacity="0.4"/>
+  <rect x="60" y="400" width="680" height="50" fill="#0d3d34" opacity="0.25"/>
+  <!-- Piste markers -->
+  <line x1="200" y1="400" x2="200" y2="420" stroke="#3fb89f" stroke-width="1" opacity="0.4"/>
+  <line x1="400" y1="400" x2="400" y2="425" stroke="#00e085" stroke-width="1.5" opacity="0.5"/>
+  <line x1="600" y1="400" x2="600" y2="420" stroke="#3fb89f" stroke-width="1" opacity="0.4"/>
+
+  <!-- Background arc — training circle -->
+  <arc/>
+  <path d="M 100 440 A 300 200 0 0 1 700 440" stroke="#0d3d34" stroke-width="1" opacity="0.3" fill="none"/>
+
+  <text x="30" y="570" font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="500" letter-spacing="0.12em" fill="#2cc295" opacity="0.4">JUNIOR · CLASS</text>
+</svg>

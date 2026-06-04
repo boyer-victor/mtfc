@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <defs>
+    <linearGradient id="bg2" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f4d43"/>
+      <stop offset="100%" stop-color="#0a0e0e"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg2)"/>
+  <!-- Diagonal accent lines -->
+  <polygon points="400,0 400,120 280,0" fill="#1a6b5f" opacity="0.4"/>
+  <line x1="20" y1="20" x2="380" y2="380" stroke="#2cc295" stroke-width="0.75" opacity="0.12"/>
+
+  <!-- Fencer silhouette — épée lunge, facing left -->
+  <g fill="#2cc295" opacity="0.85">
+    <!-- Head -->
+    <circle cx="200" cy="85" r="28"/>
+    <!-- Mask -->
+    <ellipse cx="196" cy="91" rx="20" ry="14" fill="#0a0e0e" opacity="0.5"/>
+    <!-- Neck -->
+    <rect x="192" y="113" width="16" height="16" rx="4"/>
+    <!-- Torso angled -->
+    <path d="M175 129 L178 208 L210 208 L222 129 Z"/>
+    <!-- Épée arm — extended left -->
+    <path d="M183 143 L110 155 L105 150 L111 147 L182 136 Z"/>
+    <!-- Épée weapon -->
+    <line x1="105" y1="152" x2="32" y2="162" stroke="#2cc295" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Guard bell -->
+    <circle cx="105" cy="152" r="8" fill="#3fb89f" stroke="none"/>
+    <!-- Back arm up -->
+    <path d="M217 142 L270 115 L274 121 L271 124 L218 149 Z"/>
+    <!-- Front leg (lunging forward left) -->
+    <path d="M192 208 L160 300 L172 305 L204 212 Z"/>
+    <path d="M155 302 L148 330 L160 332 L168 305 Z"/>
+    <!-- Back leg extended -->
+    <path d="M203 208 L230 298 L240 295 L216 207 Z"/>
+    <path d="M229 298 L240 328 L250 325 L240 295 Z"/>
+  </g>
+
+  <!-- Ground line -->
+  <line x1="60" y1="340" x2="340" y2="340" stroke="#2cc295" stroke-width="1.5" opacity="0.3"/>
+
+  <!-- Dot accent -->
+  <g fill="#2cc295" opacity="0.25">
+    <circle cx="360" cy="350" r="2"/>
+    <circle cx="348" cy="350" r="2"/>
+    <circle cx="360" cy="362" r="2"/>
+    <circle cx="348" cy="362" r="2"/>
+  </g>
+
+  <text x="20" y="380" font-family="Plus Jakarta Sans, sans-serif" font-size="9" font-weight="500" letter-spacing="0.12em" fill="#2cc295" opacity="0.5">ÉPÉE</text>
+</svg>
