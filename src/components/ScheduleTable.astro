@@ -1,0 +1,330 @@
+---
+interface ClassEntry {
+  day: string;
+  time: string;
+  level: string;
+  ageGroup: string;
+  instructor: string;
+  spots?: number;
+}
+
+interface WeaponGroup {
+  weapon: string;
+  classes: ClassEntry[];
+}
+
+const schedule: WeaponGroup[] = [
+  {
+    weapon: 'Foil',
+    classes: [
+      { day: 'Monday / Wednesday', time: '6:00–7:30 PM', level: 'Beginner', ageGroup: 'Adult (18+)', instructor: 'Coach Reid', spots: 12 },
+      { day: 'Tuesday / Thursday', time: '6:00–7:30 PM', level: 'Intermediate', ageGroup: 'Adult (18+)', instructor: 'Coach Reid' },
+      { day: 'Saturday', time: '9:00 AM–12:00 PM', level: 'Advanced', ageGroup: 'Adult (18+)', instructor: 'Coach Vasquez' },
+      { day: 'Saturday', time: '1:00–2:30 PM', level: 'Beginner', ageGroup: 'Junior (8–17)', instructor: 'Coach Lee', spots: 10 },
+      { day: 'Saturday', time: '2:30–5:00 PM', level: 'Competitive', ageGroup: 'Junior (12–17)', instructor: 'Coach Reid' },
+    ],
+  },
+  {
+    weapon: 'Épée',
+    classes: [
+      { day: 'Monday / Wednesday', time: '7:30–9:00 PM', level: 'Beginner', ageGroup: 'Adult (18+)', instructor: 'Coach Tanaka', spots: 12 },
+      { day: 'Tuesday / Thursday', time: '7:30–9:00 PM', level: 'Advanced', ageGroup: 'Adult (18+)', instructor: 'Coach Tanaka' },
+      { day: 'Saturday', time: '2:30–5:00 PM', level: 'Competitive', ageGroup: 'Junior (12–17)', instructor: 'Coach Tanaka' },
+    ],
+  },
+];
+
+const levelColors: Record<string, string> = {
+  'Beginner': 'level--beginner',
+  'Intermediate': 'level--intermediate',
+  'Advanced': 'level--advanced',
+  'Competitive': 'level--competitive',
+};
+---
+
+<div class="schedule-wrapper">
+  {schedule.map((group) => (
+    <section class="weapon-group" id={group.weapon.toLowerCase()}>
+      <div class="weapon-heading">
+        <span class="weapon-label">{group.weapon}</span>
+      </div>
+
+      <!-- Desktop table -->
+      <div class="table-container" role="region" aria-label={`${group.weapon} class schedule`}>
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th scope="col">Level</th>
+              <th scope="col">Age Group</th>
+              <th scope="col">Days</th>
+              <th scope="col">Time</th>
+              <th scope="col">Instructor</th>
+              <th scope="col">Availability</th>
+            </tr>
+          </thead>
+          <tbody>
+            {group.classes.map((cls) => (
+              <tr>
+                <td>
+                  <span class={`level-badge ${levelColors[cls.level] ?? ''}`}>{cls.level}</span>
+                </td>
+                <td class="cell-age">{cls.ageGroup}</td>
+                <td class="cell-days">{cls.day}</td>
+                <td class="cell-time">{cls.time}</td>
+                <td class="cell-instructor">{cls.instructor}</td>
+                <td>
+                  {cls.spots != null
+                    ? <span class="spots-badge">{cls.spots} spots left</span>
+                    : <span class="spots-open">Open</span>
+                  }
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Mobile stacked cards -->
+      <div class="mobile-cards" role="list" aria-label={`${group.weapon} class schedule`}>
+        {group.classes.map((cls) => (
+          <div class="mobile-card" role="listitem">
+            <div class="mobile-card-header">
+              <span class={`level-badge ${levelColors[cls.level] ?? ''}`}>{cls.level}</span>
+              <span class="mobile-age">{cls.ageGroup}</span>
+            </div>
+            <div class="mobile-card-body">
+              <div class="mobile-row">
+                <span class="mobile-label">Days</span>
+                <span class="mobile-value">{cls.day}</span>
+              </div>
+              <div class="mobile-row">
+                <span class="mobile-label">Time</span>
+                <span class="mobile-value">{cls.time}</span>
+              </div>
+              <div class="mobile-row">
+                <span class="mobile-label">Instructor</span>
+                <span class="mobile-value">{cls.instructor}</span>
+              </div>
+              <div class="mobile-row">
+                <span class="mobile-label">Spots</span>
+                <span class="mobile-value">
+                  {cls.spots != null
+                    ? <span class="spots-badge">{cls.spots} left</span>
+                    : <span class="spots-open">Open</span>
+                  }
+                </span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  ))}
+</div>
+
+<style>
+  .schedule-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  .weapon-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .weapon-heading {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .weapon-label {
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    padding: 4px 12px;
+    border: 1px solid var(--color-border-accent);
+    border-radius: var(--radius-sm);
+    background: rgba(0, 224, 133, 0.05);
+  }
+
+  /* Table */
+  .table-container {
+    display: none;
+    overflow-x: auto;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+  }
+
+  @media (min-width: 768px) {
+    .table-container { display: block; }
+  }
+
+  .schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+
+  .schedule-table thead {
+    background: var(--color-bg-elevated);
+  }
+
+  .schedule-table th {
+    padding: var(--space-3) var(--space-5);
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .schedule-table td {
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+    vertical-align: middle;
+  }
+
+  .schedule-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .schedule-table tbody tr {
+    background: var(--color-bg-surface);
+    transition: background var(--transition-fast);
+  }
+
+  .schedule-table tbody tr:hover {
+    background: var(--color-bg-elevated);
+  }
+
+  .cell-days, .cell-time {
+    white-space: nowrap;
+    color: var(--color-text-primary);
+  }
+
+  .cell-instructor {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+  }
+
+  /* Level badges */
+  .level-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 0.7rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+  }
+
+  .level--beginner {
+    color: var(--color-mountain-meadow);
+    background: rgba(44, 194, 149, 0.1);
+    border: 1px solid rgba(44, 194, 149, 0.25);
+  }
+
+  .level--intermediate {
+    color: var(--color-accent);
+    background: rgba(0, 224, 133, 0.08);
+    border: 1px solid rgba(0, 224, 133, 0.2);
+  }
+
+  .level--advanced {
+    color: var(--color-pistachio);
+    background: rgba(176, 212, 202, 0.08);
+    border: 1px solid rgba(176, 212, 202, 0.2);
+  }
+
+  .level--competitive {
+    color: var(--color-anti-flash-white);
+    background: rgba(241, 247, 246, 0.06);
+    border: 1px solid rgba(241, 247, 246, 0.15);
+  }
+
+  .spots-badge {
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-mountain-meadow);
+    white-space: nowrap;
+  }
+
+  .spots-open {
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+  }
+
+  /* Mobile cards */
+  .mobile-cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  @media (min-width: 768px) {
+    .mobile-cards { display: none; }
+  }
+
+  .mobile-card {
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .mobile-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-bg-elevated);
+  }
+
+  .mobile-age {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .mobile-card-body {
+    padding: var(--space-4) var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .mobile-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .mobile-label {
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    flex-shrink: 0;
+  }
+
+  .mobile-value {
+    font-size: 0.875rem;
+    color: var(--color-text-primary);
+    text-align: right;
+  }
+</style>
