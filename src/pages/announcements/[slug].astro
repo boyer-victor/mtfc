@@ -1,0 +1,210 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { announcements } from '../../data/announcements';
+
+export function getStaticPaths() {
+  return announcements.map((a) => ({
+    params: { slug: a.slug },
+    props: { announcement: a },
+  }));
+}
+
+const { announcement } = Astro.props;
+
+const formattedDate = new Date(announcement.date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  weekday: 'long',
+});
+
+// Simple markdown-to-HTML for body: bold, line breaks, horizontal rules
+function renderBody(text: string): string {
+  return text
+    // Bold
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    // Table rows — strip for now since we can't easily render them
+    .replace(/^\|.*\|$/gm, (row) => {
+      const cells = row.split('|').filter(c => c.trim() !== '');
+      if (cells.every(c => /^[-\s]+$/.test(c))) return '';
+      return '<div class="table-row">' + cells.map(c => `<span>${c.trim()}</span>`).join('') + '</div>';
+    })
+    // Bullet list items
+    .replace(/^- (.+)$/gm, '<li>$1</li>')
+    // Wrap consecutive <li> items
+    .replace(/(<li>.*?<\/li>\n?)+/gs, (match) => `<ul>${match}</ul>`)
+    // Headings ##
+    .replace(/^## (.+)$/gm, '<h3>$1</h3>')
+    // Headings #
+    .replace(/^# (.+)$/gm, '<h2>$1</h2>')
+    // Double newline = paragraph
+    .split(/\n\n+/)
+    .map(para => {
+      para = para.trim();
+      if (!para) return '';
+      if (para.startsWith('<ul>') || para.startsWith('<h') || para.startsWith('<div')) return para;
+      return `<p>${para.replace(/\n/g, '<br/>')}</p>`;
+    })
+    .filter(Boolean)
+    .join('\n');
+}
+
+const bodyHtml = renderBody(announcement.body);
+---
+
+<PageLayout
+  title={`${announcement.title} — Metro Tacoma Fencing Club`}
+  description={announcement.preview}
+>
+  <!-- Back link + header -->
+  <div class="post-page">
+    <header class="post-header">
+      <div class="container">
+        <a href="/announcements" class="back-link" aria-label="Back to all announcements">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          All Announcements
+        </a>
+
+        <time class="post-date" datetime={announcement.date}>{formattedDate}</time>
+        <h1 class="post-title">{announcement.title}</h1>
+      </div>
+    </header>
+
+    <!-- Article body -->
+    <article class="section post-body-section" aria-label={announcement.title}>
+      <div class="container">
+        <div class="post-body" set:html={bodyHtml}></div>
+
+        <!-- Footer nav -->
+        <div class="post-footer">
+          <a href="/announcements" class="back-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back to Announcements
+          </a>
+        </div>
+      </div>
+    </article>
+  </div>
+</PageLayout>
+
+<style>
+  .post-page {
+    min-height: 100vh;
+  }
+
+  .post-header {
+    position: relative;
+    padding: var(--space-20) 0 var(--space-12);
+    background: var(--color-bg-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .post-header .container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 0.8125rem;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+    transition: color var(--transition-fast), gap var(--transition-fast);
+  }
+
+  .back-link:hover {
+    color: var(--color-accent);
+    gap: var(--space-3);
+  }
+
+  .back-link svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .post-date {
+    font-size: 0.8125rem;
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+    text-transform: uppercase;
+  }
+
+  .post-title {
+    color: var(--color-text-primary);
+    max-width: 800px;
+  }
+
+  /* Body */
+  .post-body-section {
+    background: var(--color-bg);
+  }
+
+  .post-body {
+    max-width: 720px;
+  }
+
+  .post-body :global(p) {
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    line-height: 1.75;
+    margin-bottom: var(--space-5);
+  }
+
+  .post-body :global(h2),
+  .post-body :global(h3) {
+    color: var(--color-text-primary);
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-4);
+  }
+
+  .post-body :global(h2) { font-size: 1.5rem; }
+  .post-body :global(h3) { font-size: 1.25rem; }
+
+  .post-body :global(ul) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-5);
+    padding-left: var(--space-5);
+    list-style: disc;
+  }
+
+  .post-body :global(li) {
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+    list-style-type: disc;
+  }
+
+  .post-body :global(strong) {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+  }
+
+  .post-body :global(.table-row) {
+    display: flex;
+    gap: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    font-size: 0.9rem;
+  }
+
+  .post-body :global(.table-row span) {
+    color: var(--color-text-secondary);
+    flex: 1;
+  }
+
+  .post-footer {
+    margin-top: var(--space-12);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border);
+  }
+</style>
