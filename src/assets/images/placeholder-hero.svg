@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0e0e"/>
+      <stop offset="50%" stop-color="#0d3d34"/>
+      <stop offset="100%" stop-color="#0a0e0e"/>
+    </linearGradient>
+    <linearGradient id="bladeGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00e085" stop-opacity="0"/>
+      <stop offset="30%" stop-color="#00e085"/>
+      <stop offset="70%" stop-color="#2cc295"/>
+      <stop offset="100%" stop-color="#2cc295" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="accent1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#00e085" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#00e085" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="60%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#0d3d34" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0a0e0e" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur1">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="url(#bgGrad)"/>
+  <rect width="1920" height="1080" fill="url(#glow)"/>
+
+  <!-- Grid lines — architectural -->
+  <line x1="640" y1="0" x2="640" y2="1080" stroke="#1a6b5f" stroke-width="0.5" opacity="0.3"/>
+  <line x1="1280" y1="0" x2="1280" y2="1080" stroke="#1a6b5f" stroke-width="0.5" opacity="0.3"/>
+  <line x1="0" y1="360" x2="1920" y2="360" stroke="#1a6b5f" stroke-width="0.5" opacity="0.3"/>
+  <line x1="0" y1="720" x2="1920" y2="720" stroke="#1a6b5f" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- Primary blade — diagonal at 30° crossing full frame -->
+  <line x1="200" y1="900" x2="1720" y2="180" stroke="url(#bladeGrad)" stroke-width="3" stroke-linecap="round"/>
+  <!-- Blade shadow -->
+  <line x1="200" y1="900" x2="1720" y2="180" stroke="#00e085" stroke-width="12" stroke-linecap="round" opacity="0.04" filter="url(#blur1)"/>
+
+  <!-- Secondary blade — parallel offset -->
+  <line x1="350" y1="1000" x2="1920" y2="250" stroke="#2cc295" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+
+  <!-- Tertiary blade — thinner, steeper -->
+  <line x1="100" y1="700" x2="1400" y2="100" stroke="#1a6b5f" stroke-width="0.75" opacity="0.5"/>
+
+  <!-- En garde stance geometric silhouette — right side -->
+  <!-- Lunge figure abstraction -->
+  <g transform="translate(1200, 200)" opacity="0.12">
+    <!-- Body -->
+    <ellipse cx="200" cy="80" rx="18" ry="18" fill="#00e085"/>
+    <!-- Torso diagonal -->
+    <line x1="200" y1="98" x2="180" y2="200" stroke="#00e085" stroke-width="8" stroke-linecap="round"/>
+    <!-- Sword arm extended -->
+    <line x1="200" y1="130" x2="400" y2="160" stroke="#00e085" stroke-width="5" stroke-linecap="round"/>
+    <!-- Weapon -->
+    <line x1="400" y1="160" x2="550" y2="150" stroke="#00e085" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Back arm -->
+    <line x1="180" y1="150" x2="100" y2="120" stroke="#00e085" stroke-width="4" stroke-linecap="round"/>
+    <!-- Front leg -->
+    <line x1="180" y1="200" x2="260" y2="340" stroke="#00e085" stroke-width="8" stroke-linecap="round"/>
+    <line x1="260" y1="340" x2="280" y2="400" stroke="#00e085" stroke-width="6" stroke-linecap="round"/>
+    <!-- Back leg -->
+    <line x1="180" y1="200" x2="60" y2="380" stroke="#00e085" stroke-width="7" stroke-linecap="round"/>
+    <line x1="60" y1="380" x2="20" y2="400" stroke="#00e085" stroke-width="5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Accent triangle top-right -->
+  <polygon points="1720,0 1920,0 1920,200" fill="#0d3d34" opacity="0.5"/>
+  <polygon points="1820,0 1920,0 1920,80" fill="#00e085" opacity="0.08"/>
+
+  <!-- Accent band — bottom left diagonal -->
+  <polygon points="0,900 480,1080 0,1080" fill="#0d3d34" opacity="0.4"/>
+
+  <!-- Horizontal rule accent -->
+  <line x1="160" y1="520" x2="500" y2="520" stroke="#00e085" stroke-width="1.5" opacity="0.6"/>
+  <rect x="160" y="516" width="40" height="8" fill="#00e085" opacity="0.8" rx="1"/>
+
+  <!-- Dot grid cluster -->
+  <g opacity="0.2" fill="#2cc295">
+    <circle cx="80" cy="80" r="1.5"/>
+    <circle cx="100" cy="80" r="1.5"/>
+    <circle cx="120" cy="80" r="1.5"/>
+    <circle cx="80" cy="100" r="1.5"/>
+    <circle cx="100" cy="100" r="1.5"/>
+    <circle cx="120" cy="100" r="1.5"/>
+    <circle cx="80" cy="120" r="1.5"/>
+    <circle cx="100" cy="120" r="1.5"/>
+    <circle cx="120" cy="120" r="1.5"/>
+  </g>
+
+  <!-- Corner bracket elements -->
+  <g stroke="#00e085" stroke-width="1.5" opacity="0.5" fill="none">
+    <polyline points="1820,40 1860,40 1860,80"/>
+  </g>
+  <g stroke="#2cc295" stroke-width="1" opacity="0.3" fill="none">
+    <polyline points="60,980 40,980 40,1000"/>
+  </g>
+
+  <!-- Text hint overlay -->
+  <text x="160" y="500" font-family="Plus Jakarta Sans, sans-serif" font-weight="600" font-size="72" letter-spacing="-0.04em" fill="#f1f7f6" opacity="0.07">METRO TACOMA</text>
+  <text x="160" y="580" font-family="Plus Jakarta Sans, sans-serif" font-weight="600" font-size="72" letter-spacing="-0.04em" fill="#f1f7f6" opacity="0.07">FENCING CLUB</text>
+</svg>

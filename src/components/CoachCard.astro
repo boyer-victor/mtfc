@@ -1,0 +1,133 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  name: string;
+  title: string;
+  weapons: string[];
+  bio: string;
+  image: ImageMetadata;
+  imageAlt: string;
+}
+
+const { name, title, weapons, bio, image, imageAlt } = Astro.props;
+---
+
+<article class="coach-card">
+  <div class="coach-photo">
+    <Image src={image} alt={imageAlt} width={400} height={400} class="coach-img" />
+  </div>
+
+  <div class="coach-info">
+    <div class="coach-weapons">
+      {weapons.map((w) => (
+        <span class="weapon-badge">{w}</span>
+      ))}
+    </div>
+
+    <h3 class="coach-name">{name}</h3>
+    <p class="coach-title">{title}</p>
+    <p class="coach-bio">{bio}</p>
+
+    <a
+      href="#"
+      class="btn btn-outline coach-cta"
+      data-todo="cal.com"
+      aria-label={`Book a private lesson with ${name}`}
+    >
+      Book a Lesson
+    </a>
+  </div>
+</article>
+
+<style>
+  .coach-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    transition: border-color var(--transition-base), transform var(--transition-base);
+  }
+
+  .coach-card:hover {
+    border-color: var(--color-border-accent);
+    transform: translateY(-3px);
+  }
+
+  .coach-photo {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: var(--color-dark-green);
+  }
+
+  .coach-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+  }
+
+  .coach-card:hover .coach-img {
+    transform: scale(1.04);
+  }
+
+  .coach-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-6);
+    flex: 1;
+  }
+
+  .coach-weapons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .weapon-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 0.7rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    background: rgba(0, 224, 133, 0.08);
+    border: 1px solid var(--color-border-accent);
+    border-radius: var(--radius-sm);
+  }
+
+  .coach-name {
+    font-size: 1.375rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin-top: var(--space-1);
+  }
+
+  .coach-title {
+    font-size: 0.8125rem;
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    max-width: none;
+  }
+
+  .coach-bio {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    flex: 1;
+  }
+
+  .coach-cta {
+    margin-top: var(--space-2);
+    font-size: 0.875rem;
+    padding: 0.625rem 1.25rem;
+    align-self: flex-start;
+  }
+</style>

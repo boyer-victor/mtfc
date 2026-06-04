@@ -1,0 +1,249 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ScheduleTable from '../components/ScheduleTable.astro';
+import ZenPlannerEmbed from '../components/ZenPlannerEmbed.astro';
+---
+
+<PageLayout
+  title="Class Schedule — Metro Tacoma Fencing Club"
+  description="MTFC class schedule — foil and épée for adults and juniors. Beginner through competitive tracks in Tacoma, WA."
+>
+  <div class="schedule-page">
+
+    <!-- Page header -->
+    <header class="page-header">
+      <div class="page-header-bg" aria-hidden="true">
+        <div class="header-blade"></div>
+      </div>
+      <div class="container">
+        <span class="section-label">Class Schedule</span>
+        <h1 class="page-title">Training Schedule</h1>
+        <p class="page-subtitle">
+          Structured programs across both weapons and all experience levels. Open fencing available during all staffed hours.
+        </p>
+      </div>
+    </header>
+
+    <!-- Legend -->
+    <section class="section legend-section" aria-label="Schedule legend">
+      <div class="container">
+        <div class="legend">
+          <div class="legend-item">
+            <span class="level-badge level--beginner" aria-hidden="true">Beginner</span>
+            <span class="legend-text">No prior experience required</span>
+          </div>
+          <div class="legend-item">
+            <span class="level-badge level--intermediate" aria-hidden="true">Intermediate</span>
+            <span class="legend-text">3–12 months experience</span>
+          </div>
+          <div class="legend-item">
+            <span class="level-badge level--advanced" aria-hidden="true">Advanced</span>
+            <span class="legend-text">1+ year, tournament-active preferred</span>
+          </div>
+          <div class="legend-item">
+            <span class="level-badge level--competitive" aria-hidden="true">Competitive</span>
+            <span class="legend-text">By invitation or coach placement only</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schedule table -->
+    <section class="section" aria-labelledby="schedule-heading">
+      <div class="container">
+        <h2 id="schedule-heading" class="sr-only">Class Schedule by Weapon</h2>
+        <ScheduleTable />
+      </div>
+    </section>
+
+    <!-- Open fencing hours -->
+    <section class="section open-fencing" aria-labelledby="open-fencing-heading">
+      <div class="container">
+        <div class="open-fencing-inner">
+          <div class="open-fencing-text">
+            <span class="section-label">Open Fencing</span>
+            <h2 id="open-fencing-heading">Open Bouting Hours</h2>
+            <p>
+              Members may fence freely during open hours before and after scheduled classes. No advance booking required — just show up, suit up, and compete.
+            </p>
+          </div>
+          <div class="open-hours-grid">
+            <div class="hours-row">
+              <span class="hours-day">Mon – Thu</span>
+              <span class="hours-time">5:30 PM – close</span>
+            </div>
+            <div class="hours-row">
+              <span class="hours-day">Saturday</span>
+              <span class="hours-time">9:00 AM – 5:00 PM</span>
+            </div>
+            <div class="hours-row">
+              <span class="hours-day">Sunday</span>
+              <span class="hours-time">1:00 PM – 5:00 PM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ZenPlanner embed -->
+    <ZenPlannerEmbed />
+  </div>
+</PageLayout>
+
+<style>
+  .page-header {
+    position: relative;
+    padding: var(--space-20) 0 var(--space-12);
+    background: var(--color-bg-surface);
+    border-bottom: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+
+  .page-header-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .header-blade {
+    position: absolute;
+    width: 1.5px;
+    height: 200%;
+    top: -50%;
+    right: 20%;
+    background: linear-gradient(to bottom, transparent, rgba(0, 224, 133, 0.2), transparent);
+    transform: rotate(-30deg);
+  }
+
+  .page-title {
+    margin-top: var(--space-3);
+    color: var(--color-text-primary);
+  }
+
+  .page-subtitle {
+    margin-top: var(--space-4);
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    max-width: 560px;
+  }
+
+  /* Legend */
+  .legend-section {
+    padding-block: var(--space-8);
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-5);
+    align-items: center;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .legend-text {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+  }
+
+  /* Level badge copies for legend */
+  .level-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 0.7rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .level--beginner {
+    color: var(--color-mountain-meadow);
+    background: rgba(44, 194, 149, 0.1);
+    border: 1px solid rgba(44, 194, 149, 0.25);
+  }
+
+  .level--intermediate {
+    color: var(--color-accent);
+    background: rgba(0, 224, 133, 0.08);
+    border: 1px solid rgba(0, 224, 133, 0.2);
+  }
+
+  .level--advanced {
+    color: var(--color-pistachio);
+    background: rgba(176, 212, 202, 0.08);
+    border: 1px solid rgba(176, 212, 202, 0.2);
+  }
+
+  .level--competitive {
+    color: var(--color-anti-flash-white);
+    background: rgba(241, 247, 246, 0.06);
+    border: 1px solid rgba(241, 247, 246, 0.15);
+  }
+
+  /* Open fencing */
+  .open-fencing {
+    background: var(--color-bg-surface);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .open-fencing-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    align-items: start;
+  }
+
+  @media (min-width: 768px) {
+    .open-fencing-inner {
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+  }
+
+  .open-fencing-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .open-fencing-text p {
+    color: var(--color-text-secondary);
+    font-size: 0.9375rem;
+  }
+
+  .open-hours-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .hours-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-4) var(--space-5);
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    gap: var(--space-4);
+  }
+
+  .hours-day {
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+  }
+
+  .hours-time {
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-accent);
+    white-space: nowrap;
+  }
+</style>

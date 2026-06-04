@@ -1,0 +1,81 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import AnnouncementCard from '../components/AnnouncementCard.astro';
+import { announcements } from '../data/announcements';
+---
+
+<PageLayout
+  title="Announcements — Metro Tacoma Fencing Club"
+  description="Latest news and announcements from Metro Tacoma Fencing Club — tournament results, class updates, events, and more."
+>
+  <!-- Page header -->
+  <header class="page-header">
+    <div class="page-header-bg" aria-hidden="true">
+      <div class="header-blade"></div>
+    </div>
+    <div class="container">
+      <span class="section-label">News</span>
+      <h1 class="page-title">Announcements</h1>
+      <p class="page-subtitle">
+        Tournament results, class updates, events, and club news.
+      </p>
+    </div>
+  </header>
+
+  <!-- Announcements list -->
+  <section class="section" aria-labelledby="announcements-heading">
+    <div class="container">
+      <h2 id="announcements-heading" class="sr-only">All Announcements</h2>
+      <div class="announcements-list">
+        {announcements.map((a) => (
+          <AnnouncementCard announcement={a} />
+        ))}
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .page-header {
+    position: relative;
+    padding: var(--space-20) 0 var(--space-12);
+    background: var(--color-bg-surface);
+    border-bottom: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+
+  .page-header-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .header-blade {
+    position: absolute;
+    width: 1.5px;
+    height: 200%;
+    top: -50%;
+    right: 20%;
+    background: linear-gradient(to bottom, transparent, rgba(0, 224, 133, 0.2), transparent);
+    transform: rotate(-30deg);
+  }
+
+  .page-title {
+    margin-top: var(--space-3);
+    color: var(--color-text-primary);
+  }
+
+  .page-subtitle {
+    margin-top: var(--space-4);
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    max-width: 480px;
+  }
+
+  .announcements-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    max-width: 900px;
+  }
+</style>

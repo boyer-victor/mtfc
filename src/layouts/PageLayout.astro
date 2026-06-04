@@ -1,0 +1,29 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  pageClass?: string;
+}
+
+const { title, description, image, pageClass = '' } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} image={image}>
+  <Nav />
+  <main id="main-content" class={`page-main ${pageClass}`}>
+    <slot />
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-main {
+    min-height: 100vh;
+    padding-top: var(--nav-height);
+  }
+</style>

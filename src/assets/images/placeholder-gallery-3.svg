@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <defs>
+    <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0e0e"/>
+      <stop offset="60%" stop-color="#0d4038"/>
+      <stop offset="100%" stop-color="#0a0e0e"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#g3)"/>
+
+  <!-- Training hall interior perspective lines -->
+  <line x1="400" y1="200" x2="0" y2="0" stroke="#1a6b5f" stroke-width="0.5" opacity="0.3"/>
+  <line x1="400" y1="200" x2="800" y2="0" stroke="#1a6b5f" stroke-width="0.5" opacity="0.3"/>
+  <line x1="400" y1="200" x2="0" y2="600" stroke="#1a6b5f" stroke-width="0.5" opacity="0.2"/>
+  <line x1="400" y1="200" x2="800" y2="600" stroke="#1a6b5f" stroke-width="0.5" opacity="0.2"/>
+  <!-- Ceiling lines -->
+  <line x1="0" y1="0" x2="800" y2="0" stroke="#1a6b5f" stroke-width="1" opacity="0.3"/>
+  <line x1="0" y1="120" x2="800" y2="120" stroke="#1a6b5f" stroke-width="0.5" opacity="0.2"/>
+  <!-- Floor lines -->
+  <line x1="0" y1="480" x2="800" y2="480" stroke="#1a6b5f" stroke-width="1.5" opacity="0.4"/>
+  <!-- Piste strips on floor -->
+  <rect x="80" y="480" width="640" height="60" rx="2" fill="#0d3d34" opacity="0.5"/>
+  <line x1="80" y1="510" x2="720" y2="510" stroke="#1a6b5f" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- Three fencer silhouettes in training line -->
+  <g opacity="0.6">
+    <!-- Left fencer -->
+    <g fill="#3fb89f" transform="translate(120, 240)">
+      <circle cx="0" cy="0" r="18"/>
+      <rect x="-10" y="18" width="20" height="60" rx="5"/>
+      <line x1="0" y1="30" x2="50" y2="40" stroke="#3fb89f" stroke-width="3" stroke-linecap="round"/>
+      <line x1="50" y1="40" x2="100" y2="36" stroke="#3fb89f" stroke-width="1.5" stroke-linecap="round"/>
+      <rect x="-6" y="78" width="8" height="55" rx="4"/>
+      <rect x="4" y="78" width="8" height="55" rx="4"/>
+    </g>
+    <!-- Center fencer -->
+    <g fill="#2cc295" transform="translate(400, 230)">
+      <circle cx="0" cy="0" r="20"/>
+      <rect x="-11" y="20" width="22" height="65" rx="5"/>
+      <line x1="0" y1="32" x2="55" y2="44" stroke="#2cc295" stroke-width="3.5" stroke-linecap="round"/>
+      <line x1="55" y1="44" x2="110" y2="40" stroke="#2cc295" stroke-width="2" stroke-linecap="round"/>
+      <path d="M-11 35 L-55 22 L-57 27 L-54 29 L-11 40 Z"/>
+      <rect x="-7" y="85" width="9" height="60" rx="4"/>
+      <rect x="5" y="85" width="9" height="60" rx="4"/>
+    </g>
+    <!-- Right fencer -->
+    <g fill="#00e085" transform="translate(660, 245)">
+      <circle cx="0" cy="0" r="18"/>
+      <rect x="-10" y="18" width="20" height="60" rx="5"/>
+      <path d="M8 28 L50 18 L52 23 L50 25 L8 33 Z"/>
+      <line x1="52" y1="21" x2="95" y2="15" stroke="#00e085" stroke-width="2" stroke-linecap="round"/>
+      <line x1="8" y1="28" x2="-40" y2="42" stroke="#00e085" stroke-width="3" stroke-linecap="round"/>
+      <line x1="-40" y1="42" x2="-90" y2="38" stroke="#00e085" stroke-width="1.5" stroke-linecap="round"/>
+      <rect x="-6" y="78" width="8" height="55" rx="4"/>
+      <rect x="4" y="78" width="8" height="55" rx="4"/>
+    </g>
+  </g>
+
+  <!-- Overhead lights -->
+  <ellipse cx="200" cy="20" rx="30" ry="10" fill="#1a6b5f" opacity="0.4"/>
+  <ellipse cx="400" cy="20" rx="30" ry="10" fill="#1a6b5f" opacity="0.4"/>
+  <ellipse cx="600" cy="20" rx="30" ry="10" fill="#1a6b5f" opacity="0.4"/>
+
+  <text x="30" y="570" font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="500" letter-spacing="0.12em" fill="#3fb89f" opacity="0.4">TRAINING · SALLE</text>
+</svg>

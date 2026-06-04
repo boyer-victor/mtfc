@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0a0e0e"/>
+      <stop offset="100%" stop-color="#16705a"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg3)"/>
+  <!-- Geometric accent -->
+  <polygon points="0,0 140,0 0,160" fill="#1a6b5f" opacity="0.3"/>
+  <line x1="400" y1="60" x2="60" y2="400" stroke="#3fb89f" stroke-width="1" opacity="0.15"/>
+
+  <!-- Fencer silhouette — standing guard, sabre/foil, facing right, arms up -->
+  <g fill="#3fb89f" opacity="0.88">
+    <!-- Head -->
+    <circle cx="195" cy="80" r="28"/>
+    <!-- Mask -->
+    <rect x="180" y="76" width="30" height="18" rx="6" fill="#0a0e0e" opacity="0.5"/>
+    <!-- Neck -->
+    <rect x="189" y="108" width="14" height="20" rx="4"/>
+    <!-- Torso upright -->
+    <rect x="172" y="128" width="48" height="78" rx="10"/>
+    <!-- Arm up — weapon raised -->
+    <path d="M218 138 L255 85 L262 90 L257 94 L222 148 Z"/>
+    <!-- Sabre above head -->
+    <line x1="262" y1="90" x2="320" y2="42" stroke="#3fb89f" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Guard -->
+    <path d="M258 88 C258 78 272 78 272 88 L268 88 C268 82 262 82 262 88 Z" fill="#b0d4ca"/>
+    <!-- Off arm down -->
+    <path d="M174 140 L135 185 L130 180 L133 177 L172 132 Z"/>
+    <!-- Legs — standing -->
+    <rect x="178" y="206" width="16" height="95" rx="6"/>
+    <rect x="202" y="206" width="16" height="95" rx="6"/>
+    <!-- Feet -->
+    <ellipse cx="186" cy="306" rx="18" ry="8"/>
+    <ellipse cx="210" cy="306" rx="16" ry="8"/>
+  </g>
+
+  <!-- Ground line -->
+  <line x1="60" y1="320" x2="340" y2="320" stroke="#3fb89f" stroke-width="1.5" opacity="0.3"/>
+
+  <!-- Corner bracket -->
+  <g stroke="#3fb89f" stroke-width="1.5" opacity="0.4" fill="none">
+    <polyline points="340,340 360,340 360,360"/>
+  </g>
+
+  <text x="20" y="380" font-family="Plus Jakarta Sans, sans-serif" font-size="9" font-weight="500" letter-spacing="0.12em" fill="#3fb89f" opacity="0.5">FOIL · ÉPÉE</text>
+</svg>

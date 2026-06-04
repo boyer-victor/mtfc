@@ -1,0 +1,145 @@
+---
+import type { Announcement } from '../data/announcements';
+
+interface Props {
+  announcement: Announcement;
+}
+
+const { announcement } = Astro.props;
+
+const formattedDate = new Date(announcement.date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<article class="announcement-card">
+  <a href={`/announcements/${announcement.slug}`} class="card-link" tabindex="-1" aria-hidden="true"></a>
+  <header class="card-header">
+    <time class="card-date" datetime={announcement.date}>{formattedDate}</time>
+  </header>
+  <h3 class="card-title">
+    <a href={`/announcements/${announcement.slug}`} class="card-title-link">
+      {announcement.title}
+    </a>
+  </h3>
+  <p class="card-preview">{announcement.preview}</p>
+  <a href={`/announcements/${announcement.slug}`} class="card-read-more" aria-label={`Read more: ${announcement.title}`}>
+    Read more
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+</article>
+
+<style>
+  .announcement-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-6);
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    transition: border-color var(--transition-base), transform var(--transition-base);
+    overflow: hidden;
+  }
+
+  .announcement-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-accent), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+  }
+
+  .announcement-card:hover {
+    border-color: var(--color-border-accent);
+    transform: translateY(-2px);
+  }
+
+  .announcement-card:hover::before {
+    opacity: 1;
+  }
+
+  .card-link {
+    position: absolute;
+    inset: 0;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .card-date {
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+    text-transform: uppercase;
+  }
+
+  .card-title {
+    font-size: 1.125rem;
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.3;
+  }
+
+  .card-title-link {
+    color: var(--color-text-primary);
+    transition: color var(--transition-fast);
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-title-link:hover {
+    color: var(--color-accent);
+  }
+
+  .card-preview {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-width: none;
+  }
+
+  .card-read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 0.8125rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.04em;
+    color: var(--color-accent);
+    transition: gap var(--transition-fast);
+    position: relative;
+    z-index: 1;
+    margin-top: var(--space-1);
+  }
+
+  .card-read-more:hover {
+    gap: var(--space-3);
+  }
+
+  .card-read-more svg {
+    width: 16px;
+    height: 16px;
+    transition: transform var(--transition-fast);
+  }
+
+  .card-read-more:hover svg {
+    transform: translateX(3px);
+  }
+</style>

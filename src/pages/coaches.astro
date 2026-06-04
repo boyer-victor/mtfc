@@ -1,0 +1,216 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import CoachCard from '../components/CoachCard.astro';
+import coach1 from '../assets/images/placeholder-coach-1.svg';
+import coach2 from '../assets/images/placeholder-coach-2.svg';
+import coach3 from '../assets/images/placeholder-coach-3.svg';
+
+const coaches = [
+  {
+    name: 'Marcus Reid',
+    title: 'Head Coach · Foil',
+    weapons: ['Foil'],
+    bio: 'Former Division I collegiate fencer and US national team alternate, Marcus has been the driving force behind MTFC\'s competitive development for over a decade. His methodical approach to distance, timing, and tactical preparation has produced dozens of nationally-ranked juniors and adult competitors. Marcus holds a USA Fencing Level 3 coaching certification and competes annually in the veteran category.',
+    image: coach1,
+    imageAlt: 'Coach Marcus Reid, Head Foil Coach',
+  },
+  {
+    name: 'Kenji Tanaka',
+    title: 'Épée Coach',
+    weapons: ['Épée'],
+    bio: 'Three-time Pacific Northwest regional champion in épée, Kenji brings a background in sports science and biomechanics to every session. He developed the MTFC épée curriculum from the ground up, with a philosophy centered on technical precision over athleticism — building fencers who perform reliably under pressure, not just in practice. USA Fencing Level 2 certified.',
+    image: coach2,
+    imageAlt: 'Coach Kenji Tanaka, Épée Coach',
+  },
+  {
+    name: 'Sara Lee',
+    title: 'Junior Program Director',
+    weapons: ['Foil', 'Épée'],
+    bio: 'Sara leads all junior programming at MTFC and has guided more junior fencers to their first national tournament placements than any coach in club history. She is certified in youth athlete development through both USA Fencing and the National Strength and Conditioning Association, and is known for building the mental and competitive foundations that carry athletes into their adult careers.',
+    image: coach3,
+    imageAlt: 'Coach Sara Lee, Junior Program Director',
+  },
+];
+---
+
+<PageLayout
+  title="Coaches — Metro Tacoma Fencing Club"
+  description="Meet the coaching staff at MTFC. Expert foil and épée coaches with national-level experience."
+>
+  <!-- Page header -->
+  <header class="page-header">
+    <div class="page-header-bg" aria-hidden="true">
+      <div class="header-blade"></div>
+    </div>
+    <div class="container">
+      <span class="section-label">Coaching Staff</span>
+      <h1 class="page-title">Our Coaches</h1>
+      <p class="page-subtitle">
+        Expert instruction from coaches who have competed and trained at the national level — and who show up every session to prove it.
+      </p>
+    </div>
+  </header>
+
+  <!-- Coaches grid -->
+  <section class="section" aria-labelledby="coaches-heading">
+    <div class="container">
+      <h2 id="coaches-heading" class="sr-only">Coaching Staff</h2>
+      <div class="coaches-grid">
+        {coaches.map((coach) => (
+          <CoachCard
+            name={coach.name}
+            title={coach.title}
+            weapons={coach.weapons}
+            bio={coach.bio}
+            image={coach.image}
+            imageAlt={coach.imageAlt}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Private lessons callout -->
+  <section class="section lessons-callout" aria-labelledby="lessons-heading">
+    <div class="container">
+      <div class="callout-inner">
+        <div class="callout-text">
+          <span class="section-label">Private Instruction</span>
+          <h2 id="lessons-heading">One-on-One Lessons</h2>
+          <p>
+            Private lessons with any of our coaches are available by appointment. Focused individual instruction is the fastest path to meaningful improvement — particularly for competitive athletes preparing for specific tournaments.
+          </p>
+          <p>
+            Pricing and availability vary by coach. Use the booking links on each coach card to schedule directly.
+          </p>
+        </div>
+        <div class="callout-note">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="note-icon">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="12" y1="8" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="12" cy="16" r="1" fill="currentColor"/>
+          </svg>
+          <p class="note-text">
+            Booking links will connect to Cal.com once individual calendars are configured. Currently marked with <code>data-todo="cal.com"</code> for future setup.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .page-header {
+    position: relative;
+    padding: var(--space-20) 0 var(--space-12);
+    background: var(--color-bg-surface);
+    border-bottom: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+
+  .page-header-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .header-blade {
+    position: absolute;
+    width: 1.5px;
+    height: 200%;
+    top: -50%;
+    right: 25%;
+    background: linear-gradient(to bottom, transparent, rgba(0, 224, 133, 0.2), transparent);
+    transform: rotate(-30deg);
+  }
+
+  .page-title {
+    margin-top: var(--space-3);
+    color: var(--color-text-primary);
+  }
+
+  .page-subtitle {
+    margin-top: var(--space-4);
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    max-width: 560px;
+  }
+
+  .coaches-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 640px) {
+    .coaches-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1024px) {
+    .coaches-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* Private lessons callout */
+  .lessons-callout {
+    background: var(--color-bg-surface);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .callout-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    align-items: start;
+    max-width: 860px;
+  }
+
+  @media (min-width: 768px) {
+    .callout-inner { grid-template-columns: 3fr 2fr; }
+  }
+
+  .callout-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .callout-text h2 { color: var(--color-text-primary); }
+
+  .callout-text p {
+    color: var(--color-text-secondary);
+    font-size: 0.9375rem;
+  }
+
+  .callout-note {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+    padding: var(--space-5);
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    color: var(--color-text-muted);
+  }
+
+  .note-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .note-text {
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    max-width: none;
+  }
+
+  .note-text code {
+    font-family: monospace;
+    font-size: 0.75rem;
+    background: var(--color-bg);
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: var(--color-accent);
+  }
+</style>

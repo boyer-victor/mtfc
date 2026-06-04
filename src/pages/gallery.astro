@@ -1,0 +1,93 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import GalleryGrid from '../components/GalleryGrid.astro';
+
+import gallery1 from '../assets/images/placeholder-gallery-1.svg';
+import gallery2 from '../assets/images/placeholder-gallery-2.svg';
+import gallery3 from '../assets/images/placeholder-gallery-3.svg';
+import gallery4 from '../assets/images/placeholder-gallery-4.svg';
+import gallery5 from '../assets/images/placeholder-gallery-5.svg';
+import gallery6 from '../assets/images/placeholder-gallery-6.svg';
+
+const galleryItems = [
+  { src: gallery1, alt: 'Two MTFC fencers mid-bout on the foil strip', id: 'gallery-1' },
+  { src: gallery2, alt: 'MTFC athletes on the competition podium', id: 'gallery-2' },
+  { src: gallery3, alt: 'Training session in the MTFC salle', id: 'gallery-3' },
+  { src: gallery4, alt: 'Close-up of fencing equipment — mask and blade', id: 'gallery-4' },
+  { src: gallery5, alt: 'Junior class in session at MTFC', id: 'gallery-5' },
+  { src: gallery6, alt: 'MTFC fencers competing at a regional tournament', id: 'gallery-6' },
+];
+---
+
+<PageLayout
+  title="Gallery — Metro Tacoma Fencing Club"
+  description="Photos from MTFC training sessions, competitions, and club events."
+>
+  <!-- Page header -->
+  <header class="page-header">
+    <div class="page-header-bg" aria-hidden="true">
+      <div class="header-blade"></div>
+    </div>
+    <div class="container">
+      <span class="section-label">Gallery</span>
+      <h1 class="page-title">Club Photos</h1>
+      <p class="page-subtitle">
+        Training, competition, and community — from the strip and beyond.
+      </p>
+    </div>
+  </header>
+
+  <!-- Gallery grid -->
+  <section class="section gallery-section" aria-labelledby="gallery-heading">
+    <div class="container">
+      <h2 id="gallery-heading" class="sr-only">Photo Gallery</h2>
+      <p class="gallery-hint">Select any photo to view full size.</p>
+      <GalleryGrid items={galleryItems} />
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .page-header {
+    position: relative;
+    padding: var(--space-20) 0 var(--space-12);
+    background: var(--color-bg-surface);
+    border-bottom: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+
+  .page-header-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .header-blade {
+    position: absolute;
+    width: 1.5px;
+    height: 200%;
+    top: -50%;
+    right: 22%;
+    background: linear-gradient(to bottom, transparent, rgba(0, 224, 133, 0.2), transparent);
+    transform: rotate(-30deg);
+  }
+
+  .page-title {
+    margin-top: var(--space-3);
+    color: var(--color-text-primary);
+  }
+
+  .page-subtitle {
+    margin-top: var(--space-4);
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    max-width: 480px;
+  }
+
+  .gallery-hint {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-6);
+    max-width: none;
+  }
+</style>
