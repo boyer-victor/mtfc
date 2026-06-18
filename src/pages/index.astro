@@ -4,6 +4,8 @@ import Hero from '../components/Hero.astro';
 import AnnouncementCard from '../components/AnnouncementCard.astro';
 import { announcements } from '../data/announcements';
 import { SOCIAL } from '../config/site';
+import { Image } from 'astro:assets';
+import fencerHighlight from '../assets/images/fencer-highlight.webp';
 
 const recentAnnouncements = announcements.slice(0, 3);
 
@@ -87,16 +89,18 @@ const classes = [
         <h2 id="highlight-heading" class="section-title">Fencer Highlight</h2>
       </div>
       <div class="highlight-layout">
-        <!-- Left column: placeholder card -->
+        <!-- Left column: photo -->
         <div class="highlight-photo-col">
-          <div class="highlight-placeholder" aria-label="Fencer highlight coming soon">
-            <p class="highlight-placeholder-title">Fencer Highlight Coming Soon</p>
-            <p class="highlight-placeholder-sub">Check back for a featured competitive athlete.</p>
-          </div>
+          <Image
+            src={fencerHighlight}
+            alt="Featured fencer"
+            class="highlight-photo"
+            widths={[600, 900]}
+            sizes="(min-width: 768px) 50vw, 100vw"
+          />
         </div>
-        <!-- Right column: details (ready for real content) -->
         <div class="highlight-details-col">
-          <p class="highlight-details-empty">Featured athlete details will appear here.</p>
+          <p class="highlight-details-empty">Andrew Lee is an accomplished foil and epeeist holding an A rating from US fencing. The son of board member and fencer Coach Toby.</p>
         </div>
       </div>
     </div>
@@ -319,28 +323,11 @@ const classes = [
     }
   }
 
-  .highlight-placeholder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-3);
-    background: var(--color-navy);
+  .highlight-photo {
+    width: 100%;
+    height: auto;
     border-radius: var(--radius-xl);
-    padding: var(--space-16) var(--space-8);
-    text-align: center;
-    min-height: 260px;
-  }
-
-  .highlight-placeholder-title {
-    font-size: 1.125rem;
-    font-weight: var(--font-weight-semibold);
-    color: #ffffff;
-  }
-
-  .highlight-placeholder-sub {
-    font-size: 0.9rem;
-    color: var(--color-gray-400, #9ca3af);
+    display: block;
   }
 
   .highlight-details-col {
