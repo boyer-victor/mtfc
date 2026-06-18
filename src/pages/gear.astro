@@ -10,14 +10,6 @@ import PageLayout from '../layouts/PageLayout.astro';
   <header class="page-header">
     <div class="page-header-bg" aria-hidden="true">
       <div class="header-blade"></div>
-      <div class="epee-accent" aria-hidden="true">
-        <svg viewBox="0 0 200 600" xmlns="http://www.w3.org/2000/svg" fill="none" class="epee-svg">
-          <line x1="100" y1="580" x2="100" y2="80" stroke="#00e085" stroke-width="2.5" stroke-linecap="round" opacity="0.3"/>
-          <ellipse cx="100" cy="80" rx="30" ry="16" stroke="#00e085" stroke-width="2" fill="none" opacity="0.4"/>
-          <rect x="92" y="96" width="16" height="50" rx="4" fill="none" stroke="#1a6b5f" stroke-width="1.5" opacity="0.4"/>
-          <ellipse cx="100" cy="152" rx="12" ry="8" stroke="#1a6b5f" stroke-width="1.5" fill="none" opacity="0.3"/>
-        </svg>
-      </div>
     </div>
     <div class="container">
       <span class="section-label">Shop &amp; Gear</span>
@@ -104,20 +96,6 @@ import PageLayout from '../layouts/PageLayout.astro';
     right: 18%;
     background: linear-gradient(to bottom, transparent, rgba(248, 131, 121, 0.2), transparent);
     transform: rotate(-30deg);
-  }
-
-  .epee-accent {
-    position: absolute;
-    right: 8%;
-    top: 0;
-    height: 100%;
-    width: 200px;
-    opacity: 0.4;
-  }
-
-  .epee-svg {
-    height: 100%;
-    width: auto;
   }
 
   .page-header .section-label {
