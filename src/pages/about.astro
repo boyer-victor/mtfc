@@ -1,6 +1,10 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
-import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_HOURS, LOCATION } from '../config/site';
+import CoachCard from '../components/CoachCard.astro';
+import BoardCard from '../components/BoardCard.astro';
+import { ADDRESS_STREET, LOCATION, EIN } from '../config/site';
+import { coaches } from '../data/coaches';
+import { board } from '../data/board';
 
 const values = [
   {
@@ -24,26 +28,28 @@ const values = [
     desc: 'Equipment standards, armorer oversight, and structured supervision on the strip. No shortcuts on safety — ever.',
   },
 ];
+
+const stats = [
+  { num: '1999', label: 'Founded' },
+  { num: '501(c)(3)', label: 'Nonprofit' },
+  { num: 'USA Fencing', label: 'Affiliated' },
+  { num: EIN, label: 'EIN' },
+];
 ---
 
 <PageLayout
   title="About — Metro Tacoma Fencing Club"
-  description="The history, mission, and values of Metro Tacoma Fencing Club — competitive fencing in Tacoma, WA since 2008."
+  description="The history, mission, and values of Metro Tacoma Fencing Club — competitive fencing in Tacoma, WA since 1999."
 >
   <!-- Page header -->
   <header class="page-header">
     <div class="page-header-bg" aria-hidden="true">
       <div class="header-blade"></div>
-      <!-- CSS épée silhouette accent -->
       <div class="epee-accent" aria-hidden="true">
         <svg viewBox="0 0 200 600" xmlns="http://www.w3.org/2000/svg" fill="none" class="epee-svg">
-          <!-- Blade -->
           <line x1="100" y1="580" x2="100" y2="80" stroke="#00e085" stroke-width="2.5" stroke-linecap="round" opacity="0.3"/>
-          <!-- Bell guard -->
           <ellipse cx="100" cy="80" rx="30" ry="16" stroke="#00e085" stroke-width="2" fill="none" opacity="0.4"/>
-          <!-- Grip -->
           <rect x="92" y="96" width="16" height="50" rx="4" fill="none" stroke="#1a6b5f" stroke-width="1.5" opacity="0.4"/>
-          <!-- Pommel -->
           <ellipse cx="100" cy="152" rx="12" ry="8" stroke="#1a6b5f" stroke-width="1.5" fill="none" opacity="0.3"/>
         </svg>
       </div>
@@ -54,13 +60,14 @@ const values = [
     </div>
   </header>
 
-  <!-- Mission / history -->
-  <section class="section mission-section" aria-labelledby="mission-heading">
+  <!-- Section 1: Club History / Info -->
+  <section class="section history-section" aria-labelledby="history-heading">
     <div class="container">
-      <div class="mission-layout">
-        <div class="mission-text">
+      <div class="history-layout">
+        <!-- Left: mission text -->
+        <div class="history-text">
           <span class="section-label">Our Mission</span>
-          <h2 id="mission-heading">Built for Competitors,<br/>Open to Everyone</h2>
+          <h2 id="history-heading">Built for Competitors,<br/>Open to Everyone</h2>
           <p>
             Metro Tacoma Fencing Club (MTFC) has been serving the South Puget Sound since 1999. We specialize in Olympic-style sport fencing, offering quality training in foil and épée to all ages and experience levels.
           </p>
@@ -70,107 +77,89 @@ const values = [
           <p>
             We pride ourselves on an inclusive, friendly, and relaxed atmosphere where recreational fencers, beginners, and competitive athletes all train together.
           </p>
+          <address class="club-address">
+            <span>{ADDRESS_STREET}</span>
+            <span>{LOCATION}</span>
+          </address>
         </div>
 
-        <!-- Diagonal blade accent column -->
-        <div class="mission-accent" aria-hidden="true">
-          <div class="accent-line"></div>
-          <div class="accent-stat-stack">
-            <div class="accent-stat">
-              <span class="big-num">1999</span>
-              <span class="big-label">Founded</span>
+        <!-- Right: stat callouts -->
+        <div class="stat-callouts">
+          {stats.map((stat) => (
+            <div class="stat-item">
+              <span class="stat-num">{stat.num}</span>
+              <span class="stat-label">{stat.label}</span>
             </div>
-            <div class="accent-stat">
-              <span class="big-num">PNW</span>
-              <span class="big-label">Regional presence</span>
+          ))}
+        </div>
+      </div>
+
+      <!-- Values sub-section -->
+      <div class="values-subsection" aria-labelledby="values-heading">
+        <div class="values-header">
+          <span class="section-label">What We Stand For</span>
+          <h2 id="values-heading">Club Values</h2>
+        </div>
+        <div class="values-grid">
+          {values.map((value) => (
+            <div class="value-card">
+              <div class="value-icon" set:html={value.icon}></div>
+              <h3 class="value-name">{value.name}</h3>
+              <p class="value-desc">{value.desc}</p>
             </div>
-            <div class="accent-stat">
-              <span class="big-num">2</span>
-              <span class="big-label">Weapons</span>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Values -->
-  <section class="section values-section" aria-labelledby="values-heading">
+  <!-- Section 2: Staff & Coaches -->
+  <section class="section coaches-section" aria-labelledby="coaches-heading">
     <div class="container">
-      <div class="values-header">
-        <span class="section-label">What We Stand For</span>
-        <h2 id="values-heading">Club Values</h2>
+      <div class="section-header">
+        <span class="section-label">Coaching Staff</span>
+        <h2 id="coaches-heading">Our Coaches</h2>
       </div>
-      <div class="values-grid">
-        {values.map((value) => (
-          <div class="value-card">
-            <div class="value-icon" set:html={value.icon}></div>
-            <h3 class="value-name">{value.name}</h3>
-            <p class="value-desc">{value.desc}</p>
-          </div>
+      <div class="coaches-grid">
+        {coaches.map((coach) => (
+          <CoachCard
+            name={coach.name}
+            title={coach.title}
+            weapons={coach.weapons}
+            bio={coach.bio}
+            image={coach.image}
+            imageAlt={coach.imageAlt}
+            bookable={coach.bookable}
+          />
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Facility / location -->
-  <section class="section location-section" aria-labelledby="location-heading">
+  <!-- Section 3: Board of Directors -->
+  <section class="section board-section" aria-labelledby="board-heading">
     <div class="container">
-      <div class="location-layout">
-        <div class="location-text">
-          <span class="section-label">Location &amp; Facility</span>
-          <h2 id="location-heading">The Salle</h2>
-          <p>
-            Our training facility is a full-dedicated fencing salle — not a shared gym, not a rented floor. Permanent piste strips, competition lighting, and a full armorer bench on site.
-          </p>
-          <address class="location-address">
-            <p>8629 S Tacoma Way</p>
-            <p>{LOCATION}</p>
-          </address>
-          <p class="location-hours">{CONTACT_HOURS}</p>
-          <div class="contact-links">
-            <a href={`mailto:${CONTACT_EMAIL}`} class="contact-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.5"/>
-                <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
-              {CONTACT_EMAIL}
-            </a>
-            <a href={`tel:${CONTACT_PHONE}`} class="contact-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 10.8 19.79 19.79 0 01.88 2.18 2 2 0 012.86.01h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="1.5"/>
-              </svg>
-              {CONTACT_PHONE}
-            </a>
-          </div>
-        </div>
-
-        <!-- Map placeholder -->
-        <div class="map-placeholder" aria-label="Map placeholder — replace with embedded map">
-          <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" fill="none" class="map-svg" aria-hidden="true">
-            <rect width="400" height="300" fill="#0e1414"/>
-            <rect x="1" y="1" width="398" height="298" stroke="#1a6b5f" stroke-width="1" fill="none" rx="11"/>
-            <!-- Grid lines -->
-            <line x1="0" y1="100" x2="400" y2="100" stroke="#1a6b5f" stroke-width="0.5" opacity="0.4"/>
-            <line x1="0" y1="200" x2="400" y2="200" stroke="#1a6b5f" stroke-width="0.5" opacity="0.4"/>
-            <line x1="133" y1="0" x2="133" y2="300" stroke="#1a6b5f" stroke-width="0.5" opacity="0.4"/>
-            <line x1="266" y1="0" x2="266" y2="300" stroke="#1a6b5f" stroke-width="0.5" opacity="0.4"/>
-            <!-- Pin -->
-            <circle cx="200" cy="140" r="16" fill="#0d3d34" stroke="#00e085" stroke-width="2"/>
-            <circle cx="200" cy="140" r="5" fill="#00e085"/>
-            <line x1="200" y1="156" x2="200" y2="175" stroke="#00e085" stroke-width="2" stroke-linecap="round"/>
-            <!-- Roads suggestion -->
-            <line x1="0" y1="150" x2="400" y2="148" stroke="#1a6b5f" stroke-width="3" opacity="0.3"/>
-            <line x1="190" y1="0" x2="195" y2="300" stroke="#1a6b5f" stroke-width="3" opacity="0.3"/>
-            <text x="200" y="220" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="500" letter-spacing="0.06em" fill="#3fb89f" opacity="0.6" text-anchor="middle">TACOMA, WA</text>
-          </svg>
-        </div>
+      <div class="section-header">
+        <span class="section-label">Leadership</span>
+        <h2 id="board-heading">Board of Directors</h2>
+      </div>
+      <div class="board-grid">
+        {board.map((member) => (
+          <BoardCard
+            name={member.name}
+            role={member.role}
+            bio={member.bio}
+            image={member.image}
+            imageAlt={member.imageAlt}
+          />
+        ))}
       </div>
     </div>
   </section>
 </PageLayout>
 
 <style>
+  /* Page header */
   .page-header {
     position: relative;
     padding: var(--space-20) 0 var(--space-16);
@@ -215,12 +204,12 @@ const values = [
     line-height: 1.1;
   }
 
-  /* Mission */
-  .mission-section {
+  /* Section 1: History / Info */
+  .history-section {
     background: var(--color-bg);
   }
 
-  .mission-layout {
+  .history-layout {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-12);
@@ -228,67 +217,67 @@ const values = [
   }
 
   @media (min-width: 1024px) {
-    .mission-layout { grid-template-columns: 2fr 1fr; }
+    .history-layout { grid-template-columns: 2fr 1fr; }
   }
 
-  .mission-text {
+  .history-text {
     display: flex;
     flex-direction: column;
     gap: var(--space-5);
   }
 
-  .mission-text h2 { color: var(--color-text-primary); line-height: 1.2; }
-  .mission-text p { color: var(--color-text-secondary); font-size: 0.9375rem; }
+  .history-text h2 { color: var(--color-text-primary); line-height: 1.2; }
+  .history-text p { color: var(--color-text-secondary); font-size: 0.9375rem; }
 
-  .mission-accent {
+  .club-address {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-4) var(--space-5);
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-style: normal;
+  }
+
+  .club-address span {
+    font-size: 0.9rem;
+    color: var(--color-text-primary);
+  }
+
+  /* Stat callouts */
+  .stat-callouts {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: var(--space-6);
     align-items: flex-start;
   }
 
   @media (min-width: 1024px) {
-    .mission-accent { flex-direction: column; align-items: stretch; }
+    .stat-callouts {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      border-left: 2px solid var(--color-accent);
+      padding-left: var(--space-8);
+    }
   }
 
-  .accent-line {
-    width: 2px;
-    height: 200px;
-    background: linear-gradient(to bottom, var(--color-accent), transparent);
-    flex-shrink: 0;
-    display: none;
-  }
-
-  @media (min-width: 1024px) {
-    .accent-line { display: block; }
-  }
-
-  .accent-stat-stack {
-    display: flex;
-    flex-direction: row;
-    gap: var(--space-6);
-    flex-wrap: wrap;
-  }
-
-  @media (min-width: 1024px) {
-    .accent-stat-stack { flex-direction: column; }
-  }
-
-  .accent-stat {
+  .stat-item {
     display: flex;
     flex-direction: column;
     gap: 4px;
   }
 
-  .big-num {
-    font-size: 2rem;
+  .stat-num {
+    font-size: 1.75rem;
     font-weight: var(--font-weight-semibold);
     color: var(--color-accent);
     line-height: 1;
     letter-spacing: -0.02em;
   }
 
-  .big-label {
+  .stat-label {
     font-size: 0.75rem;
     font-weight: var(--font-weight-medium);
     letter-spacing: 0.1em;
@@ -296,9 +285,10 @@ const values = [
     color: var(--color-text-muted);
   }
 
-  /* Values */
-  .values-section {
-    background: var(--color-bg-surface);
+  /* Values sub-section */
+  .values-subsection {
+    margin-top: var(--space-16);
+    padding-top: var(--space-12);
     border-top: 1px solid var(--color-border);
   }
 
@@ -363,82 +353,53 @@ const values = [
     line-height: 1.65;
   }
 
-  /* Location */
-  .location-section {
+  /* Section header (shared) */
+  .section-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-10);
+  }
+
+  .section-header h2 { color: var(--color-text-primary); }
+
+  /* Section 2: Coaches */
+  .coaches-section {
+    background: var(--color-gray-100, #f3f4f6);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .coaches-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 640px) {
+    .coaches-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1024px) {
+    .coaches-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* Section 3: Board */
+  .board-section {
     background: var(--color-bg);
     border-top: 1px solid var(--color-border);
   }
 
-  .location-layout {
+  .board-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-10);
-    align-items: start;
+    gap: var(--space-6);
   }
 
-  @media (min-width: 768px) {
-    .location-layout { grid-template-columns: 1fr 1fr; align-items: center; }
+  @media (min-width: 640px) {
+    .board-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
-  .location-text {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-5);
-  }
-
-  .location-text h2 { color: var(--color-text-primary); }
-  .location-text p { color: var(--color-text-secondary); font-size: 0.9375rem; }
-
-  .location-address {
-    font-style: normal;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
-    padding: var(--space-4) var(--space-5);
-    background: var(--color-bg-elevated);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-  }
-
-  .location-address p {
-    font-size: 0.9rem;
-    color: var(--color-text-primary);
-    max-width: none;
-  }
-
-  .location-hours {
-    font-size: 0.875rem;
-    color: var(--color-text-secondary);
-  }
-
-  .contact-links {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-  }
-
-  .contact-link {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    font-size: 0.875rem;
-    font-weight: var(--font-weight-medium);
-    color: var(--color-accent);
-    transition: gap var(--transition-fast);
-  }
-
-  .contact-link:hover { gap: var(--space-3); }
-  .contact-link svg { width: 18px; height: 18px; }
-
-  .map-placeholder {
-    border-radius: var(--radius-xl);
-    overflow: hidden;
-    border: 1px solid var(--color-border);
-    aspect-ratio: 4/3;
-  }
-
-  .map-svg {
-    width: 100%;
-    height: 100%;
+  @media (min-width: 1024px) {
+    .board-grid { grid-template-columns: repeat(3, 1fr); }
   }
 </style>
