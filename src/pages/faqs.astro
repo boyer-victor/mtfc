@@ -1,0 +1,272 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const faqs = [
+  {
+    q: 'What equipment do I need to start?',
+    a: 'Nothing for your first session — we have loaner gear available. As you progress, you\'ll want to invest in your own mask, jacket, glove, and weapon. We can point you toward reputable vendors.',
+  },
+  {
+    q: 'How old do you have to be to fence?',
+    a: 'We welcome athletes of all ages. Our junior programs start at age 8. Adults of any age are welcome in our beginner and intermediate classes.',
+  },
+  {
+    q: 'Do I need any athletic background?',
+    a: 'No. Fencing rewards coordination, focus, and tactical thinking more than raw athleticism. Many successful fencers come to the sport with no prior athletic training.',
+  },
+  {
+    q: 'How do I register for classes?',
+    a: 'Registration is handled through ZenPlanner, our membership portal. Use the Login button in the navigation to create an account and enroll.',
+  },
+  {
+    q: 'Are private lessons available?',
+    a: 'Yes. Coach Kim and Coach Chung both offer private lessons. See the Private Lessons page for pricing and details.',
+  },
+  {
+    q: 'Where is the club located?',
+    a: '8629 S Tacoma Way, Lakewood, WA 98499. Hours: Monday–Friday 4:00–9:00 PM, Saturday 8:30–10:30 AM.',
+  },
+];
+---
+
+<PageLayout
+  title="FAQs — Metro Tacoma Fencing Club"
+  description="Frequently asked questions about fencing at Metro Tacoma Fencing Club, plus a beginner's guide to getting started."
+>
+  <!-- Page header -->
+  <header class="page-header">
+    <div class="page-header-bg" aria-hidden="true">
+      <div class="header-blade"></div>
+      <div class="epee-accent" aria-hidden="true">
+        <svg viewBox="0 0 200 600" xmlns="http://www.w3.org/2000/svg" fill="none" class="epee-svg">
+          <line x1="100" y1="580" x2="100" y2="80" stroke="#F88379" stroke-width="2.5" stroke-linecap="round" opacity="0.25"/>
+          <ellipse cx="100" cy="80" rx="30" ry="16" stroke="#F88379" stroke-width="2" fill="none" opacity="0.3"/>
+          <rect x="92" y="96" width="16" height="50" rx="4" fill="none" stroke="#F88379" stroke-width="1.5" opacity="0.3"/>
+          <ellipse cx="100" cy="152" rx="12" ry="8" stroke="#F88379" stroke-width="1.5" fill="none" opacity="0.25"/>
+        </svg>
+      </div>
+    </div>
+    <div class="container">
+      <span class="section-label">Help &amp; Resources</span>
+      <h1 class="page-title">FAQs &amp;<br/>Beginner's Guide</h1>
+    </div>
+  </header>
+
+  <!-- Section 1: Beginner's Guide -->
+  <section class="section guide-section" aria-labelledby="guide-heading">
+    <div class="container">
+      <div class="guide-header">
+        <span class="section-label">Resources</span>
+        <h2 id="guide-heading">Beginner's Fencing Guide</h2>
+        <p class="guide-desc">
+          A comprehensive guide to getting started in fencing, written by Dr. Tobias Lee — MTFC coach since 2009 and board member since 2008.
+        </p>
+        <a
+          href="/docs/beginners-guide.pdf"
+          download
+          class="btn btn-primary guide-download"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" width="18" height="18">
+            <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+          </svg>
+          Download Guide (PDF)
+        </a>
+      </div>
+
+      <div class="pdf-embed">
+        <iframe
+          src="/docs/beginners-guide.pdf"
+          title="MTFC Beginner's Fencing Guide"
+          width="100%"
+          height="600"
+          style="border: 0; border-radius: var(--radius-lg);"
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: FAQs -->
+  <section class="section faq-section" aria-labelledby="faq-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">FAQ</span>
+        <h2 id="faq-heading">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="faq-list" role="list">
+        {faqs.map((item) => (
+          <details class="faq-item">
+            <summary class="faq-question">{item.q}</summary>
+            <p class="faq-answer">{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  /* ── Page header ─────────────────────────────────────────────── */
+  .page-header {
+    position: relative;
+    padding: var(--space-20) 0 var(--space-16);
+    background: var(--color-bg-dark);
+    overflow: hidden;
+  }
+
+  .page-header-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .header-blade {
+    position: absolute;
+    width: 1.5px;
+    height: 200%;
+    top: -50%;
+    right: 18%;
+    background: linear-gradient(to bottom, transparent, rgba(248, 131, 121, 0.15), transparent);
+    transform: rotate(-30deg);
+  }
+
+  .epee-accent {
+    position: absolute;
+    right: 8%;
+    top: 0;
+    height: 100%;
+    width: 200px;
+    opacity: 0.5;
+  }
+
+  .epee-svg {
+    height: 100%;
+    width: auto;
+  }
+
+  .page-header .section-label {
+    color: var(--color-coral);
+  }
+
+  .page-title {
+    margin-top: var(--space-3);
+    color: var(--color-white);
+    line-height: 1.1;
+  }
+
+  /* ── Section 1: Beginner's Guide ─────────────────────────────── */
+  .guide-section {
+    background: var(--color-bg);
+  }
+
+  .guide-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    margin-bottom: var(--space-10);
+    max-width: 680px;
+  }
+
+  .guide-header h2 {
+    color: var(--color-text-primary);
+  }
+
+  .guide-desc {
+    color: var(--color-text-secondary);
+    font-size: 0.9375rem;
+    max-width: 60ch;
+  }
+
+  .guide-download {
+    align-self: flex-start;
+  }
+
+  .pdf-embed {
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  /* ── Section 2: FAQs ─────────────────────────────────────────── */
+  .faq-section {
+    background: var(--color-gray-100);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .section-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-10);
+  }
+
+  .section-header h2 {
+    color: var(--color-text-primary);
+  }
+
+  .faq-list {
+    max-width: 820px;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .faq-item:first-of-type {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-5) 0;
+    font-weight: var(--font-weight-semibold);
+    font-size: 1rem;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    list-style: none;
+    transition: color var(--transition-fast);
+  }
+
+  /* Remove default disclosure triangle in WebKit */
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  /* Custom chevron indicator */
+  .faq-question::after {
+    content: '';
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M5 8l5 5 5-5' stroke='%234B5563' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: transform var(--transition-base);
+  }
+
+  .faq-item[open] .faq-question {
+    color: var(--color-coral);
+  }
+
+  .faq-item[open] .faq-question::after {
+    transform: rotate(180deg);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M5 8l5 5 5-5' stroke='%23F88379' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  .faq-question:hover {
+    color: var(--color-coral);
+  }
+
+  .faq-answer {
+    padding: 0 0 var(--space-5);
+    padding-right: var(--space-8);
+    color: var(--color-text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    max-width: 68ch;
+  }
+</style>
