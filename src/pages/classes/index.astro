@@ -1,0 +1,235 @@
+---
+import ClassPageLayout from '../../components/ClassPageLayout.astro';
+
+const classes = [
+  {
+    title: 'New to Fencing',
+    description: 'Never held a sword? Start here — no experience needed.',
+    href: '/classes/new-to-fencing',
+  },
+  {
+    title: 'Beginner',
+    description: 'Build foundations in footwork, technique, and basic actions.',
+    href: '/classes/beginner',
+  },
+  {
+    title: 'Intermediate',
+    description: 'Refine your technique and start developing tactical play.',
+    href: '/classes/intermediate',
+  },
+  {
+    title: 'Advanced / Competitive',
+    description: 'High-intensity training for tournament competitors.',
+    href: '/classes/advanced',
+  },
+  {
+    title: 'Private Lessons',
+    description: 'One-on-one instruction with Coach Kim or Coach Chung.',
+    href: '/classes/private',
+  },
+  {
+    title: 'Open Fencing',
+    description: 'Drop-in strip time — fence with whoever shows up.',
+    href: '/classes/open-fencing',
+  },
+];
+
+const pricing = [
+  { program: '1 class/week (beginner or intermediate)', price: '$145/mo' },
+  { program: 'Unlimited beginner or intermediate', price: '$180/mo' },
+  { program: 'Competitive Foil', price: '$300/mo' },
+  { program: 'Advanced Épée', price: '$290/mo' },
+  { program: 'Elite Foil', price: '$430/mo' },
+  { program: 'Club fee (private lessons only, if not in group classes)', price: '$80/mo or drop-in fee' },
+];
+---
+
+<ClassPageLayout
+  title="Classes — Metro Tacoma Fencing Club"
+  description="Explore MTFC's fencing programs — from beginner introductions to elite competitive training."
+  pageTitle="Classes"
+  pageSubtitle="Find the right program for your level and goals."
+>
+  <!-- Section 1: Class cards grid -->
+  <section class="section classes-section" aria-labelledby="classes-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Programs</span>
+        <h2 id="classes-heading">Our Programs</h2>
+      </div>
+      <div class="classes-grid">
+        {classes.map((cls) => (
+          <div class="class-card">
+            <h3 class="class-card-title">{cls.title}</h3>
+            <p class="class-card-desc">{cls.description}</p>
+            <a href={cls.href} class="class-card-link" aria-label={`Learn more about ${cls.title}`}>
+              Learn More →
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Pricing overview -->
+  <section class="section pricing-section" aria-labelledby="pricing-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Tuition</span>
+        <h2 id="pricing-heading">Pricing Overview</h2>
+      </div>
+      <div class="pricing-box">
+        <table class="pricing-table" aria-label="Pricing overview">
+          <thead>
+            <tr>
+              <th class="pricing-th" scope="col">Program</th>
+              <th class="pricing-th pricing-th-right" scope="col">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {pricing.map((row) => (
+              <tr class="pricing-row">
+                <td class="pricing-td">{row.program}</td>
+                <td class="pricing-td pricing-td-price">{row.price}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</ClassPageLayout>
+
+<style>
+  /* ─── Section header ─────────────────────────────────────────── */
+  .section-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-10);
+  }
+
+  .section-header h2 {
+    color: var(--color-text-primary);
+  }
+
+  /* ─── Classes grid ───────────────────────────────────────────── */
+  .classes-section {
+    background: #ffffff;
+  }
+
+  .classes-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 640px) {
+    .classes-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1024px) {
+    .classes-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .class-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-6);
+    background: #ffffff;
+    border: 1px solid var(--color-gray-300, #d1d5db);
+    border-radius: var(--radius-xl);
+    transition: border-color var(--transition-base), transform var(--transition-base);
+  }
+
+  .class-card:hover {
+    border-color: var(--color-coral);
+    transform: translateY(-2px);
+  }
+
+  .class-card-title {
+    font-size: 1.125rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+  }
+
+  .class-card-desc {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    flex: 1;
+  }
+
+  .class-card-link {
+    font-size: 0.8125rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-coral);
+    transition: letter-spacing var(--transition-fast);
+    align-self: flex-start;
+  }
+
+  .class-card-link:hover { letter-spacing: 0.02em; }
+
+  /* ─── Pricing section ────────────────────────────────────────── */
+  .pricing-section {
+    background: #ffffff;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .pricing-box {
+    background: var(--color-gray-100, #f5f5f5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .pricing-th {
+    padding: var(--space-4) var(--space-6);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    text-align: left;
+    background: var(--color-gray-100, #f5f5f5);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .pricing-th-right {
+    text-align: right;
+  }
+
+  .pricing-row {
+    border-bottom: 1px solid var(--color-border);
+    transition: background var(--transition-fast);
+  }
+
+  .pricing-row:last-child {
+    border-bottom: none;
+  }
+
+  .pricing-row:hover {
+    background: rgba(248, 131, 121, 0.05);
+  }
+
+  .pricing-td {
+    padding: var(--space-4) var(--space-6);
+    font-size: 0.9375rem;
+    color: var(--color-text-primary);
+    background: #ffffff;
+    vertical-align: top;
+  }
+
+  .pricing-td-price {
+    text-align: right;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-navy);
+    white-space: nowrap;
+  }
+</style>
