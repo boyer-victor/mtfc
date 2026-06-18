@@ -1,16 +1,14 @@
 ---
-import { ZENPLANNER_EMBED_URL } from '../config/site';
 import logoRaw from '../assets/icons/logo.svg?raw';
 
 const pathname = Astro.url.pathname;
 
 const navLinks = [
   { href: '/', label: 'Home' },
-  { href: '/schedule', label: 'Schedule' },
-  { href: '/coaches', label: 'Coaches' },
+  { href: '/classes', label: 'Classes' },
   { href: '/about', label: 'About' },
-  { href: '/gallery', label: 'Gallery' },
-  { href: '/announcements', label: 'Announcements' },
+  { href: '/faqs', label: 'FAQs' },
+  { href: '/gear', label: 'Gear' },
 ];
 
 function isActive(href: string) {
@@ -42,8 +40,13 @@ function isActive(href: string) {
     </ul>
 
     <!-- CTA button -->
-    <a href={ZENPLANNER_EMBED_URL} class="btn btn-primary nav-cta" target="_blank" rel="noopener noreferrer">
-      Join Now
+    <a
+      href="https://mtfc.sites.zenplanner.com/login.cfm"
+      class="btn btn-primary nav-cta"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Login
     </a>
 
     <!-- Mobile hamburger -->
@@ -85,8 +88,13 @@ function isActive(href: string) {
       ))}
     </ul>
 
-    <a href={ZENPLANNER_EMBED_URL} class="btn btn-primary mobile-cta" target="_blank" rel="noopener noreferrer">
-      Join Now
+    <a
+      href="https://mtfc.sites.zenplanner.com/login.cfm"
+      class="btn btn-primary mobile-cta"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Login
     </a>
   </div>
 </div>
@@ -119,7 +127,7 @@ function isActive(href: string) {
     if (e.key === 'Escape') closeMenu();
   });
 
-  // Scroll-based background
+  // Scroll-based shadow
   const nav = document.querySelector('.nav') as HTMLElement | null;
   window.addEventListener('scroll', () => {
     if (nav) {
@@ -136,14 +144,12 @@ function isActive(href: string) {
     right: 0;
     z-index: 100;
     height: var(--nav-height);
-    transition: background var(--transition-base), backdrop-filter var(--transition-base);
+    background: var(--color-white);
+    transition: box-shadow var(--transition-base);
   }
 
   .nav--scrolled {
-    background: rgba(10, 14, 14, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--color-border);
+    box-shadow: var(--shadow-nav);
   }
 
   .nav-inner {
@@ -187,12 +193,12 @@ function isActive(href: string) {
     letter-spacing: 0.01em;
   }
 
-  .nav-link:hover,
-  .nav-link--active {
+  .nav-link:hover {
     color: var(--color-text-primary);
   }
 
   .nav-link--active {
+    color: var(--color-text-primary);
     position: relative;
   }
 
@@ -202,8 +208,8 @@ function isActive(href: string) {
     bottom: -2px;
     left: var(--space-3);
     right: var(--space-3);
-    height: 1.5px;
-    background: var(--color-accent);
+    height: 2px;
+    background: var(--color-coral);
     border-radius: 1px;
   }
 
@@ -233,7 +239,7 @@ function isActive(href: string) {
   }
 
   .nav-hamburger:hover {
-    background: var(--color-bg-elevated);
+    background: var(--color-gray-100);
   }
 
   @media (min-width: 1024px) {
@@ -244,7 +250,7 @@ function isActive(href: string) {
     display: block;
     width: 100%;
     height: 1.5px;
-    background: var(--color-text-primary);
+    background: var(--color-navy);
     border-radius: 1px;
     transition: transform var(--transition-base), opacity var(--transition-base);
   }
@@ -254,9 +260,7 @@ function isActive(href: string) {
     position: fixed;
     inset: 0;
     z-index: 200;
-    background: rgba(10, 14, 14, 0.96);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    background: var(--color-navy);
     animation: fadeIn var(--transition-base) ease;
   }
 
@@ -285,13 +289,12 @@ function isActive(href: string) {
     align-items: center;
     justify-content: center;
     border-radius: var(--radius-sm);
-    color: var(--color-text-secondary);
+    color: var(--color-white);
     transition: color var(--transition-fast), background var(--transition-fast);
   }
 
   .mobile-close:hover {
-    color: var(--color-text-primary);
-    background: var(--color-bg-elevated);
+    background: rgba(255, 255, 255, 0.1);
   }
 
   .mobile-close svg {
@@ -313,13 +316,13 @@ function isActive(href: string) {
     font-size: 1.5rem;
     font-weight: var(--font-weight-semibold);
     letter-spacing: -0.02em;
-    color: var(--color-text-secondary);
+    color: var(--color-white);
     transition: color var(--transition-fast);
   }
 
   .mobile-link:hover,
   .mobile-link--active {
-    color: var(--color-accent);
+    color: var(--color-coral);
   }
 
   .mobile-cta {
