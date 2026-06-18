@@ -3,33 +3,26 @@
 /* ─── Design Tokens ─────────────────────────────────────────────────── */
 :root {
   /* Primary palette */
-  --color-rich-black: #0a0e0e;
-  --color-dark-green: #0d3d34;
-  --color-teal-green: #1a6b5f;
-  --color-mountain-meadow: #2cc295;
-  --color-caribbean-green: #00e085;
-  --color-anti-flash-white: #f1f7f6;
-
-  /* Secondary palette */
-  --color-pine: #0d4038;
-  --color-basil: #0f4d43;
-  --color-forest: #16705a;
-  --color-frog: #1a8b6f;
-  --color-mint: #3fb89f;
-  --color-stone: #7a7a7a;
-  --color-pistachio: #b0d4ca;
+  --color-navy: #041E42;
+  --color-coral: #F88379;
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-gray-100: #F5F5F5;
+  --color-gray-300: #D1D5DB;
+  --color-gray-600: #4B5563;
 
   /* Semantic tokens */
-  --color-bg: #0d2620;
-  --color-bg-surface: #103028;
-  --color-bg-elevated: #153a30;
-  --color-text-primary: var(--color-anti-flash-white);
-  --color-text-secondary: var(--color-pistachio);
-  --color-text-muted: var(--color-stone);
-  --color-accent: var(--color-caribbean-green);
-  --color-accent-dim: var(--color-mountain-meadow);
-  --color-border: rgba(255, 255, 255, 0.1);
-  --color-border-accent: rgba(0, 224, 133, 0.3);
+  --color-bg: var(--color-white);
+  --color-bg-surface: var(--color-gray-100);
+  --color-bg-elevated: var(--color-white);
+  --color-bg-dark: var(--color-navy);
+  --color-text-primary: var(--color-black);
+  --color-text-secondary: var(--color-gray-600);
+  --color-text-muted: var(--color-gray-600);
+  --color-text-on-dark: var(--color-white);
+  --color-accent: var(--color-coral);
+  --color-border: var(--color-gray-300);
+  --color-border-accent: rgba(248, 131, 121, 0.4);
 
   /* Typography */
   --font-primary: 'Plus Jakarta Sans', sans-serif;
@@ -54,7 +47,7 @@
 
   /* Layout */
   --max-width: 1280px;
-  --nav-height: 108px;
+  --nav-height: 72px;
 
   /* Radii */
   --radius-sm: 4px;
@@ -68,8 +61,9 @@
   --transition-slow: 400ms ease;
 
   /* Shadows */
-  --shadow-glow: 0 0 24px rgba(0, 224, 133, 0.15);
-  --shadow-glow-sm: 0 0 12px rgba(0, 224, 133, 0.1);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-nav: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 /* ─── Reset ─────────────────────────────────────────────────────────── */
@@ -174,8 +168,8 @@ p {
 
 /* ─── Selection ──────────────────────────────────────────────────────── */
 ::selection {
-  background-color: rgba(0, 224, 133, 0.2);
-  color: var(--color-anti-flash-white);
+  background-color: rgba(248, 131, 121, 0.2);
+  color: var(--color-black);
 }
 
 /* ─── Scrollbar ──────────────────────────────────────────────────────── */
@@ -186,23 +180,13 @@ p {
   background: var(--color-bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-teal-green);
+  background: var(--color-navy);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-mountain-meadow);
+  background: var(--color-navy);
 }
 
-/* ─── Noise texture overlay ──────────────────────────────────────────── */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.4;
-}
 
 /* ─── Page transitions ───────────────────────────────────────────────── */
 @keyframes fadeUp {
@@ -232,10 +216,6 @@ body::before {
   }
 }
 
-@keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 0 12px rgba(0, 224, 133, 0.2); }
-  50% { box-shadow: 0 0 28px rgba(0, 224, 133, 0.5); }
-}
 
 /* ─── Button base ────────────────────────────────────────────────────── */
 .btn {
@@ -254,25 +234,22 @@ body::before {
 }
 
 .btn-primary {
-  background-color: var(--color-accent);
-  color: var(--color-rich-black);
+  background-color: var(--color-coral);
+  color: var(--color-white);
   border: 2px solid transparent;
 }
 .btn-primary:hover {
-  background-color: transparent;
-  color: var(--color-accent);
-  border-color: var(--color-accent);
-  box-shadow: var(--shadow-glow);
+  filter: brightness(0.92);
 }
 
 .btn-outline {
   background-color: transparent;
-  color: var(--color-text-primary);
-  border: 2px solid var(--color-border);
+  color: var(--color-navy);
+  border: 2px solid var(--color-navy);
 }
 .btn-outline:hover {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
+  border-color: var(--color-coral);
+  color: var(--color-coral);
 }
 
 /* ─── Section spacing ────────────────────────────────────────────────── */
@@ -297,18 +274,3 @@ body::before {
   margin-bottom: var(--space-3);
 }
 
-/* ─── Diagonal accent line ───────────────────────────────────────────── */
-.blade-line {
-  position: absolute;
-  width: 2px;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    var(--color-accent) 30%,
-    var(--color-mountain-meadow) 70%,
-    transparent
-  );
-  opacity: 0.4;
-  transform: rotate(-30deg);
-  transform-origin: top center;
-}

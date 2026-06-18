@@ -1,0 +1,136 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  pageTitle: string;
+  pageSubtitle?: string;
+}
+
+const { title, description, pageTitle, pageSubtitle } = Astro.props;
+---
+
+<PageLayout title={title} description={description}>
+  <!-- Page header — navy banner -->
+  <header class="class-page-header">
+    <div class="container">
+      <span class="header-label">Classes</span>
+      <h1 class="header-title">{pageTitle}</h1>
+      {pageSubtitle && <p class="header-subtitle">{pageSubtitle}</p>}
+    </div>
+  </header>
+
+  <!-- Page body -->
+  <slot />
+
+  <!-- CTA band -->
+  <section class="cta-band" aria-labelledby="cta-heading">
+    <div class="container cta-content">
+      <div class="cta-text">
+        <h2 id="cta-heading" class="cta-heading">Ready to Register?</h2>
+        <p class="cta-sub">Create or log in to your ZenPlanner account to enroll.</p>
+      </div>
+      <a
+        href="https://mtfc.sites.zenplanner.com/login.cfm"
+        class="btn btn-coral"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Login to ZenPlanner
+      </a>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  /* ─── Header banner ──────────────────────────────────────────── */
+  .class-page-header {
+    background: var(--color-navy);
+    padding: var(--space-20) 0 var(--space-16);
+  }
+
+  .header-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: var(--space-3);
+  }
+
+  .header-title {
+    color: #ffffff;
+    line-height: 1.1;
+  }
+
+  .header-subtitle {
+    margin-top: var(--space-4);
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    max-width: 56ch;
+  }
+
+  /* ─── CTA band ───────────────────────────────────────────────── */
+  .cta-band {
+    background: var(--color-navy);
+    padding-block: var(--space-16);
+  }
+
+  .cta-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    align-items: flex-start;
+  }
+
+  @media (min-width: 768px) {
+    .cta-content {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .cta-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    max-width: 520px;
+  }
+
+  .cta-heading {
+    color: #ffffff;
+  }
+
+  .cta-sub {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .btn-coral {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 0.75rem 1.75rem;
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-semibold);
+    font-size: 0.9375rem;
+    letter-spacing: 0.02em;
+    border-radius: var(--radius-md);
+    background-color: var(--color-coral);
+    color: #ffffff;
+    border: 2px solid transparent;
+    transition: all var(--transition-base);
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .btn-coral:hover {
+    filter: brightness(0.92);
+  }
+</style>

@@ -1,37 +1,21 @@
 ---
 import { Image } from 'astro:assets';
-import { SITE_TAGLINE, ZENPLANNER_EMBED_URL } from '../config/site';
+import { SITE_TAGLINE, ZENPLANNER_LOGIN_URL } from '../config/site';
 import heroBg from '../assets/images/hero.webp';
 ---
 
 <section class="hero" aria-label="Hero">
-  <!-- Background composition -->
-  <div class="hero-bg" aria-hidden="true">
-    <!-- Photo background -->
-    <Image src={heroBg} alt="" class="hero-bg-photo" loading="eager" />
-    <!-- Mesh gradient layers -->
-    <div class="bg-layer bg-layer--1"></div>
-    <div class="bg-layer bg-layer--2"></div>
-    <!-- Diagonal blade motif -->
-    <div class="blade-motif blade-motif--primary"></div>
-    <div class="blade-motif blade-motif--secondary"></div>
-    <div class="blade-motif blade-motif--tertiary"></div>
-    <!-- Corner accent -->
-    <div class="corner-accent corner-accent--tr"></div>
-    <div class="corner-accent corner-accent--bl"></div>
-    <!-- Grid -->
-    <div class="hero-grid"></div>
-  </div>
+  <!-- Background photo -->
+  <Image src={heroBg} alt="" class="hero-bg-photo" loading="eager" />
+  <!-- Navy overlay -->
+  <div class="hero-overlay" aria-hidden="true"></div>
 
   <div class="hero-content container">
     <div class="hero-text">
-      <!-- Eyebrow -->
-      <span class="hero-eyebrow section-label" aria-hidden="true">Tacoma, WA</span>
-
-      <!-- Club name -->
+      <!-- Headline -->
       <h1 class="hero-title">
         <span class="hero-title-line">Metro Tacoma</span>
-        <span class="hero-title-line hero-title-line--accent">Fencing Club</span>
+        <span class="hero-title-line">Fencing Club</span>
       </h1>
 
       <!-- Tagline -->
@@ -39,28 +23,28 @@ import heroBg from '../assets/images/hero.webp';
 
       <!-- CTAs -->
       <div class="hero-ctas">
+        <a href="/classes" class="btn btn-primary">
+          View Classes
+        </a>
         <a
-          href={ZENPLANNER_EMBED_URL}
-          class="btn btn-primary"
+          href={ZENPLANNER_LOGIN_URL}
+          class="btn btn-outline"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Join Now
-        </a>
-        <a href="/schedule" class="btn btn-outline">
-          View Schedule
+          Login
         </a>
       </div>
 
-      <!-- Stat strip -->
+      <!-- Stats strip -->
       <div class="hero-stats" role="list" aria-label="Club highlights">
         <div class="stat" role="listitem">
-          <span class="stat-number">15+</span>
+          <span class="stat-number">25+</span>
           <span class="stat-label">Years Active</span>
         </div>
         <div class="stat-divider" aria-hidden="true"></div>
         <div class="stat" role="listitem">
-          <span class="stat-number">Foil · Épée</span>
+          <span class="stat-number">Foil &amp; Épée</span>
           <span class="stat-label">Weapons</span>
         </div>
         <div class="stat-divider" aria-hidden="true"></div>
@@ -70,36 +54,6 @@ import heroBg from '../assets/images/hero.webp';
         </div>
       </div>
     </div>
-
-    <!-- Visual composition right side -->
-    <div class="hero-visual" aria-hidden="true">
-      <div class="hero-emblem">
-        <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" fill="none" class="emblem-svg">
-          <!-- Outer ring -->
-          <circle cx="150" cy="150" r="140" stroke="#1a6b5f" stroke-width="1" opacity="0.4"/>
-          <circle cx="150" cy="150" r="120" stroke="#0d3d34" stroke-width="1.5" opacity="0.6"/>
-          <!-- Blade crossing through circle -->
-          <line x1="20" y1="260" x2="280" y2="40" stroke="#00e085" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
-          <line x1="20" y1="260" x2="280" y2="40" stroke="#00e085" stroke-width="16" stroke-linecap="round" opacity="0.04"/>
-          <!-- Guard at intersection ~65% down the blade -->
-          <ellipse cx="95" cy="193" rx="18" ry="10" stroke="#2cc295" stroke-width="2" transform="rotate(-52 95 193)" fill="#0d3d34"/>
-          <!-- Dot on grip -->
-          <circle cx="40" cy="248" r="4" fill="#00e085" opacity="0.8"/>
-          <!-- Inner geometric -->
-          <polygon points="150,40 260,200 40,200" stroke="#0d3d34" stroke-width="1" fill="none" opacity="0.5"/>
-          <!-- Center mark -->
-          <circle cx="150" cy="150" r="4" fill="#00e085" opacity="0.6"/>
-          <circle cx="150" cy="150" r="18" stroke="#00e085" stroke-width="1" opacity="0.2"/>
-          <!-- MTFC text arc suggestion -->
-          <text x="150" y="282" font-family="Plus Jakarta Sans, sans-serif" font-size="9" font-weight="600" letter-spacing="0.2em" fill="#3fb89f" text-anchor="middle" opacity="0.5">METRO TACOMA</text>
-        </svg>
-      </div>
-    </div>
-  </div>
-
-  <!-- Scroll indicator -->
-  <div class="scroll-indicator" aria-hidden="true">
-    <div class="scroll-line"></div>
   </div>
 </section>
 
@@ -113,13 +67,7 @@ import heroBg from '../assets/images/hero.webp';
     padding-top: var(--nav-height);
   }
 
-  /* Background */
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-
+  /* Background photo */
   .hero-bg-photo {
     position: absolute;
     inset: 0;
@@ -127,117 +75,20 @@ import heroBg from '../assets/images/hero.webp';
     height: 100%;
     object-fit: cover;
     object-position: center;
-    opacity: 0.18;
   }
 
-  .bg-layer {
+  /* Navy overlay */
+  .hero-overlay {
     position: absolute;
     inset: 0;
-  }
-
-  .bg-layer--1 {
-    background: radial-gradient(ellipse 80% 60% at 70% 30%, #0d3d34 0%, transparent 70%);
-    opacity: 0.6;
-  }
-
-  .bg-layer--2 {
-    background: radial-gradient(ellipse 50% 40% at 20% 80%, #0d4038 0%, transparent 60%);
-    opacity: 0.5;
-  }
-
-  /* Blade motifs */
-  .blade-motif {
-    position: absolute;
-    background: linear-gradient(
-      to bottom right,
-      transparent 0%,
-      var(--color-accent) 40%,
-      var(--color-mountain-meadow) 60%,
-      transparent 100%
-    );
-    transform-origin: top left;
-  }
-
-  .blade-motif--primary {
-    width: 2px;
-    height: 140%;
-    top: -20%;
-    left: 72%;
-    transform: rotate(-30deg);
-    opacity: 0.5;
-  }
-
-  .blade-motif--secondary {
-    width: 1px;
-    height: 130%;
-    top: -15%;
-    left: 76%;
-    transform: rotate(-30deg);
-    opacity: 0.2;
-  }
-
-  .blade-motif--tertiary {
-    width: 1px;
-    height: 120%;
-    top: -10%;
-    left: 68%;
-    transform: rotate(-30deg);
-    opacity: 0.15;
-  }
-
-  /* Corner accents */
-  .corner-accent {
-    position: absolute;
-    border: 1.5px solid var(--color-accent);
-    opacity: 0.3;
-  }
-
-  .corner-accent--tr {
-    top: 32px;
-    right: 32px;
-    width: 48px;
-    height: 48px;
-    border-left: none;
-    border-bottom: none;
-  }
-
-  .corner-accent--bl {
-    bottom: 80px;
-    left: 32px;
-    width: 32px;
-    height: 32px;
-    border-right: none;
-    border-top: none;
-  }
-
-  /* Grid overlay */
-  .hero-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(var(--color-border) 1px, transparent 1px),
-      linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
-    background-size: 80px 80px;
-    opacity: 0.3;
-    mask-image: radial-gradient(ellipse 70% 80% at 50% 50%, black 0%, transparent 75%);
+    background: rgba(4, 30, 66, 0.62);
   }
 
   /* Content */
   .hero-content {
     position: relative;
     z-index: 1;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-16);
-    align-items: center;
     padding-block: var(--space-20);
-  }
-
-  @media (min-width: 1024px) {
-    .hero-content {
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-12);
-    }
   }
 
   .hero-text {
@@ -247,14 +98,11 @@ import heroBg from '../assets/images/hero.webp';
     animation: fadeUp 0.7s ease both;
   }
 
-  .hero-eyebrow {
-    animation: fadeUp 0.7s ease 0.1s both;
-  }
-
   .hero-title {
     display: flex;
     flex-direction: column;
     gap: var(--space-1);
+    color: white;
     animation: fadeUp 0.7s ease 0.2s both;
   }
 
@@ -262,17 +110,12 @@ import heroBg from '../assets/images/hero.webp';
     display: block;
   }
 
-  .hero-title-line--accent {
-    color: var(--color-accent);
-  }
-
   .hero-tagline {
     font-size: clamp(1rem, 2vw, 1.25rem);
     font-weight: var(--font-weight-medium);
-    color: var(--color-text-secondary);
+    color: white;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    max-width: none;
     animation: fadeUp 0.7s ease 0.3s both;
   }
 
@@ -283,13 +126,24 @@ import heroBg from '../assets/images/hero.webp';
     animation: fadeUp 0.7s ease 0.4s both;
   }
 
-  /* Stats */
+  /* Override outline button for dark hero background */
+  .hero .btn-outline {
+    border-color: white;
+    color: white;
+  }
+
+  .hero .btn-outline:hover {
+    border-color: var(--color-coral);
+    color: var(--color-coral);
+  }
+
+  /* Stats strip */
   .hero-stats {
     display: flex;
     align-items: center;
     gap: var(--space-6);
     padding-top: var(--space-4);
-    border-top: 1px solid var(--color-border);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
     animation: fadeUp 0.7s ease 0.5s both;
   }
 
@@ -302,7 +156,7 @@ import heroBg from '../assets/images/hero.webp';
   .stat-number {
     font-size: 1rem;
     font-weight: var(--font-weight-semibold);
-    color: var(--color-text-primary);
+    color: var(--color-coral);
     white-space: nowrap;
   }
 
@@ -311,51 +165,13 @@ import heroBg from '../assets/images/hero.webp';
     font-weight: var(--font-weight-medium);
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--color-text-muted);
+    color: rgba(255, 255, 255, 0.7);
   }
 
   .stat-divider {
     width: 1px;
     height: 32px;
-    background: var(--color-border);
+    background: rgba(209, 213, 219, 0.4);
     flex-shrink: 0;
-  }
-
-  /* Visual right side */
-  .hero-visual {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: fadeIn 1s ease 0.4s both;
-  }
-
-  .hero-emblem {
-    position: relative;
-    width: min(320px, 90vw);
-    aspect-ratio: 1;
-  }
-
-  .emblem-svg {
-    width: 100%;
-    height: 100%;
-    animation: fadeIn 1.2s ease 0.6s both;
-  }
-
-  /* Scroll indicator */
-  .scroll-indicator {
-    position: absolute;
-    bottom: var(--space-8);
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .scroll-line {
-    width: 1px;
-    height: 48px;
-    background: linear-gradient(to bottom, var(--color-accent), transparent);
-    animation: fadeIn 1s ease 1.2s both;
   }
 </style>

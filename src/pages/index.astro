@@ -2,76 +2,107 @@
 import PageLayout from '../layouts/PageLayout.astro';
 import Hero from '../components/Hero.astro';
 import AnnouncementCard from '../components/AnnouncementCard.astro';
-import CoachCard from '../components/CoachCard.astro';
 import { announcements } from '../data/announcements';
-import { ZENPLANNER_EMBED_URL } from '../config/site';
-
-import coachChung from '../assets/images/coach-kwangsuk-chung.webp';
-import coachKim from '../assets/images/coach-jisun-kim.webp';
-import coachTobias from '../assets/images/coach-tobias-lee.webp';
+import { SOCIAL } from '../config/site';
 
 const recentAnnouncements = announcements.slice(0, 3);
 
-const coaches = [
+const classes = [
   {
-    name: 'Kwangsuk Chung',
-    title: 'Head Coach',
-    weapons: ['Foil', 'Épée'],
-    bio: 'Kwangsuk leads MTFC\'s coaching program with decades of experience in Olympic-style sport fencing. A USA Fencing certified instructor, he has guided athletes of all levels to competitive success.',
-    image: coachChung,
-    imageAlt: 'Kwangsuk Chung, Head Coach',
+    title: 'New to Fencing',
+    description: 'Never held a sword? Start here — no experience needed.',
+    href: '/classes/new-to-fencing',
   },
   {
-    name: 'Jisun Kim',
-    title: 'Head Épée Coach',
-    weapons: ['Épée'],
-    bio: 'Jisun is MTFC\'s Head Épée Coach, bringing deep technical expertise to every session. Her patient, detail-oriented approach develops fencers from first touch to the national circuit.',
-    image: coachKim,
-    imageAlt: 'Jisun Kim, Head Épée Coach',
+    title: 'Beginner',
+    description: 'Build foundations in footwork, technique, and basic actions.',
+    href: '/classes/beginner',
   },
   {
-    name: 'Tobias Lee',
-    title: 'Coach',
-    weapons: ['Foil', 'Épée'],
-    bio: 'Tobias specializes in developing footwork fundamentals and tactical awareness, working with competitive and recreational fencers of all skill levels.',
-    image: coachTobias,
-    imageAlt: 'Tobias Lee, Coach',
-  },
-];
-
-const programs = [
-  {
-    weapon: 'Foil',
-    audience: 'Adult',
-    description: 'Tactical, point-control weapon. Adult foil classes run beginner through advanced with competitive training available.',
-    tiers: ['Drop-In', 'Monthly Membership', 'Competitive Track'],
+    title: 'Intermediate',
+    description: 'Refine your technique and start developing tactical play.',
+    href: '/classes/intermediate',
   },
   {
-    weapon: 'Foil',
-    audience: 'Junior',
-    description: 'Ages 8–17. Structured progressions from first-touch fundamentals through junior tournament preparation.',
-    tiers: ['Beginner (8–11)', 'Development (12–14)', 'Competitive (15–17)'],
+    title: 'Advanced / Competitive',
+    description: 'High-intensity training for tournament competitors.',
+    href: '/classes/advanced',
   },
   {
-    weapon: 'Épée',
-    audience: 'Adult',
-    description: 'Full-body target, distance-dominant weapon. Beginner-friendly entries and advanced competitive tracks.',
-    tiers: ['Drop-In', 'Monthly Membership', 'Competitive Track'],
+    title: 'Private Lessons',
+    description: 'One-on-one instruction with Coach Kim or Coach Chung.',
+    href: '/classes/private',
   },
   {
-    weapon: 'Épée',
-    audience: 'Junior',
-    description: 'Competitive junior épée training alongside foil-track athletes. Ages 12–17 with tournament preparation.',
-    tiers: ['Development (12–14)', 'Competitive (15–17)'],
+    title: 'Open Fencing',
+    description: 'Drop-in strip time — fence with whoever shows up.',
+    href: '/classes/open-fencing',
   },
 ];
 ---
 
 <PageLayout title="Metro Tacoma Fencing Club — Where Champions Are Forged">
-  <!-- Hero -->
+  <!-- 1. Hero -->
   <Hero />
 
-  <!-- Announcements preview -->
+  <!-- 2. Class Blurbs -->
+  <section class="section classes-section" aria-labelledby="classes-heading">
+    <div class="container">
+      <div class="section-header-centered">
+        <span class="section-label">Programs</span>
+        <h2 id="classes-heading" class="section-title">Our Classes</h2>
+      </div>
+      <div class="classes-grid">
+        {classes.map((cls) => (
+          <div class="class-card">
+            <h3 class="class-card-title">{cls.title}</h3>
+            <p class="class-card-desc">{cls.description}</p>
+            <a href={cls.href} class="class-card-link" aria-label={`Learn more about ${cls.title}`}>
+              Learn More →
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. New to Fencing callout -->
+  <section class="ntf-band" aria-labelledby="ntf-heading">
+    <div class="container ntf-content">
+      <div class="ntf-text">
+        <h2 id="ntf-heading" class="ntf-title">Never held a sword?</h2>
+        <p class="ntf-sub">Start here — no experience needed and loaner gear is available for your first session.</p>
+      </div>
+      <a href="/classes/new-to-fencing" class="btn btn-primary ntf-cta">
+        Get Started
+      </a>
+    </div>
+  </section>
+
+  <!-- 4. Fencer Highlight -->
+  <section class="section highlight-section" aria-labelledby="highlight-heading">
+    <div class="container">
+      <div class="section-header-centered">
+        <span class="section-label">Spotlight</span>
+        <h2 id="highlight-heading" class="section-title">Fencer Highlight</h2>
+      </div>
+      <div class="highlight-layout">
+        <!-- Left column: placeholder card -->
+        <div class="highlight-photo-col">
+          <div class="highlight-placeholder" aria-label="Fencer highlight coming soon">
+            <p class="highlight-placeholder-title">Fencer Highlight Coming Soon</p>
+            <p class="highlight-placeholder-sub">Check back for a featured competitive athlete.</p>
+          </div>
+        </div>
+        <!-- Right column: details (ready for real content) -->
+        <div class="highlight-details-col">
+          <p class="highlight-details-empty">Featured athlete details will appear here.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Announcements -->
   <section class="section announcements-section" aria-labelledby="announcements-heading">
     <div class="container">
       <div class="section-header">
@@ -80,10 +111,7 @@ const programs = [
           <h2 id="announcements-heading" class="section-title">Latest Announcements</h2>
         </div>
         <a href="/announcements" class="view-all" aria-label="View all announcements">
-          View All
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          View All →
         </a>
       </div>
       <div class="announcements-grid">
@@ -91,102 +119,49 @@ const programs = [
           <AnnouncementCard announcement={a} />
         ))}
       </div>
-    </div>
-  </section>
 
-  <!-- Programs overview -->
-  <section class="section programs-section" aria-labelledby="programs-heading">
-    <div class="container">
-      <div class="section-header-centered">
-        <span class="section-label">Programs</span>
-        <h2 id="programs-heading" class="section-title">Train With Purpose</h2>
-        <p class="section-desc">
-          Two weapons, all levels, all ages. Every program is built around real competitive development — not participation trophies.
-        </p>
-      </div>
-
-      <div class="programs-grid">
-        {programs.map((prog) => (
-          <div class="program-card">
-            <div class="program-badge-row">
-              <span class="program-weapon">{prog.weapon}</span>
-              <span class="program-audience">{prog.audience}</span>
-            </div>
-            <p class="program-desc">{prog.description}</p>
-            <ul class="program-tiers" role="list">
-              {prog.tiers.map((tier) => (
-                <li class="program-tier">
-                  <span class="tier-dot" aria-hidden="true"></span>
-                  {tier}
-                </li>
-              ))}
-            </ul>
-            <a href="/schedule" class="program-link" aria-label={`View ${prog.weapon} ${prog.audience} schedule`}>
-              View Schedule →
-            </a>
+      <!-- Follow Us -->
+      {(SOCIAL.instagram || SOCIAL.facebook) && (
+        <div class="follow-row" aria-label="Follow us on social media">
+          <span class="follow-label">Follow Us</span>
+          <div class="follow-icons">
+            {SOCIAL.instagram && (
+              <a
+                href={SOCIAL.instagram}
+                class="follow-icon-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="follow-icon">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                  <circle cx="12" cy="12" r="4"/>
+                  <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+                </svg>
+              </a>
+            )}
+            {SOCIAL.facebook && (
+              <a
+                href={SOCIAL.facebook}
+                class="follow-icon-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="follow-icon">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                </svg>
+              </a>
+            )}
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Coaches teaser -->
-  <section class="section coaches-section" aria-labelledby="coaches-heading">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-header-text">
-          <span class="section-label">Coaching Staff</span>
-          <h2 id="coaches-heading" class="section-title">Meet Our Coaches</h2>
         </div>
-        <a href="/coaches" class="view-all" aria-label="Meet all coaches">
-          All Coaches
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </div>
-      <div class="coaches-grid">
-        {coaches.map((coach) => (
-          <CoachCard
-            name={coach.name}
-            title={coach.title}
-            weapons={coach.weapons}
-            bio={coach.bio}
-            image={coach.image}
-            imageAlt={coach.imageAlt}
-          />
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Bottom CTA band -->
-  <section class="cta-band" aria-labelledby="cta-heading">
-    <div class="cta-bg" aria-hidden="true">
-      <div class="cta-blade"></div>
-    </div>
-    <div class="container cta-content">
-      <div class="cta-text">
-        <span class="section-label">Membership</span>
-        <h2 id="cta-heading" class="cta-title">Ready to Start?</h2>
-        <p class="cta-desc">
-          No experience needed for beginner classes. Equipment is available to borrow for your first session.
-        </p>
-      </div>
-      <div class="cta-actions">
-        <a href={ZENPLANNER_EMBED_URL} class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-          Join Now
-        </a>
-        <a href="/schedule" class="btn btn-outline">
-          Browse Schedule
-        </a>
-      </div>
+      )}
     </div>
   </section>
 </PageLayout>
 
 <style>
-  /* Section headers */
+  /* ─── Section header helpers ─────────────────────────────── */
   .section-header {
     display: flex;
     align-items: flex-end;
@@ -211,12 +186,6 @@ const programs = [
     flex-direction: column;
     gap: var(--space-3);
     margin-bottom: var(--space-10);
-    max-width: 600px;
-  }
-
-  .section-desc {
-    color: var(--color-text-secondary);
-    font-size: 1rem;
   }
 
   .view-all {
@@ -231,19 +200,172 @@ const programs = [
   }
 
   .view-all:hover { gap: var(--space-3); }
-  .view-all svg { width: 16px; height: 16px; }
 
-  /* Announcements */
+  /* ─── 2. Class Blurbs ────────────────────────────────────── */
+  .classes-section {
+    background: #ffffff;
+  }
+
+  .classes-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 640px) {
+    .classes-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1024px) {
+    .classes-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .class-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-6);
+    background: #ffffff;
+    border: 1px solid var(--color-gray-300, #d1d5db);
+    border-radius: var(--radius-xl);
+    transition: border-color var(--transition-base), transform var(--transition-base);
+  }
+
+  .class-card:hover {
+    border-color: var(--color-coral);
+    transform: translateY(-2px);
+  }
+
+  .class-card-title {
+    font-size: 1.125rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+  }
+
+  .class-card-desc {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    flex: 1;
+  }
+
+  .class-card-link {
+    font-size: 0.8125rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-coral);
+    transition: letter-spacing var(--transition-fast);
+    align-self: flex-start;
+  }
+
+  .class-card-link:hover { letter-spacing: 0.02em; }
+
+  /* ─── 3. New to Fencing callout ─────────────────────────── */
+  .ntf-band {
+    background: var(--color-navy);
+    padding-block: var(--space-16);
+  }
+
+  .ntf-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    align-items: flex-start;
+  }
+
+  @media (min-width: 768px) {
+    .ntf-content {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .ntf-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    max-width: 520px;
+  }
+
+  .ntf-title {
+    color: #ffffff;
+  }
+
+  .ntf-sub {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .ntf-cta {
+    flex-shrink: 0;
+  }
+
+  /* ─── 4. Fencer Highlight ────────────────────────────────── */
+  .highlight-section {
+    background: #ffffff;
+  }
+
+  .highlight-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 768px) {
+    .highlight-layout {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+  }
+
+  .highlight-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    background: var(--color-navy);
+    border-radius: var(--radius-xl);
+    padding: var(--space-16) var(--space-8);
+    text-align: center;
+    min-height: 260px;
+  }
+
+  .highlight-placeholder-title {
+    font-size: 1.125rem;
+    font-weight: var(--font-weight-semibold);
+    color: #ffffff;
+  }
+
+  .highlight-placeholder-sub {
+    font-size: 0.9rem;
+    color: var(--color-gray-400, #9ca3af);
+  }
+
+  .highlight-details-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .highlight-details-empty {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+
+  /* ─── 5. Announcements ───────────────────────────────────── */
   .announcements-section {
     background: var(--color-bg-surface);
     border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
   }
 
   .announcements-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-4);
+    margin-bottom: var(--space-10);
   }
 
   @media (min-width: 768px) {
@@ -254,179 +376,42 @@ const programs = [
     .announcements-grid { grid-template-columns: repeat(3, 1fr); }
   }
 
-  /* Programs */
-  .programs-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-4);
-  }
-
-  @media (min-width: 640px) {
-    .programs-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  .program-card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-    padding: var(--space-6);
-    background: var(--color-bg-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-xl);
-    transition: border-color var(--transition-base), transform var(--transition-base);
-  }
-
-  .program-card:hover {
-    border-color: var(--color-border-accent);
-    transform: translateY(-2px);
-  }
-
-  .program-badge-row {
+  /* Follow Us */
+  .follow-row {
     display: flex;
     align-items: center;
-    gap: var(--space-3);
+    gap: var(--space-4);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
   }
 
-  .program-weapon {
+  .follow-label {
     font-size: 0.75rem;
     font-weight: var(--font-weight-semibold);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--color-accent);
-    padding: 3px 10px;
-    border: 1px solid var(--color-border-accent);
-    border-radius: var(--radius-sm);
-    background: rgba(0, 224, 133, 0.06);
-  }
-
-  .program-audience {
-    font-size: 0.75rem;
-    font-weight: var(--font-weight-medium);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--color-text-muted);
   }
 
-  .program-desc {
-    font-size: 0.9rem;
-    color: var(--color-text-secondary);
-    line-height: 1.65;
-  }
-
-  .program-tiers {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-    flex: 1;
-  }
-
-  .program-tier {
+  .follow-icons {
     display: flex;
     align-items: center;
     gap: var(--space-3);
-    font-size: 0.875rem;
+  }
+
+  .follow-icon-link {
     color: var(--color-text-secondary);
+    transition: color var(--transition-fast), transform var(--transition-fast);
   }
 
-  .tier-dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--color-accent);
-    flex-shrink: 0;
+  .follow-icon-link:hover {
+    color: var(--color-coral);
+    transform: translateY(-2px);
   }
 
-  .program-link {
-    font-size: 0.8125rem;
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-accent);
-    transition: letter-spacing var(--transition-fast);
-  }
-
-  .program-link:hover { letter-spacing: 0.02em; }
-
-  /* Coaches */
-  .coaches-section {
-    background: var(--color-bg-surface);
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .coaches-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-6);
-  }
-
-  @media (min-width: 640px) {
-    .coaches-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  @media (min-width: 1024px) {
-    .coaches-grid { grid-template-columns: repeat(3, 1fr); }
-  }
-
-  /* CTA band */
-  .cta-band {
-    position: relative;
-    padding-block: var(--space-20);
-    background: var(--color-rich-black);
-    overflow: hidden;
-  }
-
-  .cta-bg {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-
-  .cta-blade {
-    position: absolute;
-    width: 2px;
-    height: 200%;
-    top: -50%;
-    right: 30%;
-    background: linear-gradient(to bottom, transparent, rgba(0, 224, 133, 0.15), transparent);
-    transform: rotate(-30deg);
-  }
-
-  .cta-content {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-8);
-    align-items: flex-start;
-  }
-
-  @media (min-width: 768px) {
-    .cta-content {
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-    }
-  }
-
-  .cta-text {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-    max-width: 520px;
-  }
-
-  .cta-title {
-    color: var(--color-text-primary);
-  }
-
-  .cta-desc {
-    color: var(--color-text-secondary);
-    font-size: 1rem;
-  }
-
-  .cta-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3);
-    flex-shrink: 0;
+  .follow-icon {
+    width: 22px;
+    height: 22px;
+    display: block;
   }
 </style>

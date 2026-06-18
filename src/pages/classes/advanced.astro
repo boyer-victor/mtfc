@@ -1,0 +1,100 @@
+---
+import ClassPageLayout from '../../components/ClassPageLayout.astro';
+
+const pricing = [
+  { label: 'Competitive Foil', price: '$300/mo' },
+  { label: 'Advanced Épée', price: '$290/mo' },
+  { label: 'Elite Foil', price: '$430/mo' },
+];
+---
+
+<ClassPageLayout
+  title="Advanced & Competitive Classes — Metro Tacoma Fencing Club"
+  description="High-intensity fencing training for tournament athletes at MTFC — divisional, national, and international competitive tracks."
+  pageTitle="Advanced & Competitive"
+  pageSubtitle="High-intensity training for tournament athletes."
+>
+  <section class="section content-section">
+    <div class="container content-body">
+      <p>Competitive tracks are designed for athletes training for divisional, national, and international tournaments. Expect demanding footwork drills, tactical sparring, video review, and competition-focused coaching.</p>
+
+      <div class="pricing-callout" aria-label="Advanced and competitive class pricing">
+        <h2 class="pricing-heading">Pricing</h2>
+        <table class="pricing-table" aria-label="Advanced and competitive class tuition">
+          <tbody>
+            {pricing.map((row) => (
+              <tr class="pricing-row">
+                <td class="pricing-td">{row.label}</td>
+                <td class="pricing-td pricing-td-price">{row.price}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</ClassPageLayout>
+
+<style>
+  .content-section {
+    background: #ffffff;
+  }
+
+  .content-body {
+    max-width: 68ch;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .content-body > p {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--color-text-primary);
+  }
+
+  .pricing-callout {
+    background: var(--color-gray-100, #f5f5f5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .pricing-heading {
+    padding: var(--space-4) var(--space-6);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    border-bottom: 1px solid var(--color-border);
+    margin: 0;
+  }
+
+  .pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .pricing-row {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .pricing-row:last-child {
+    border-bottom: none;
+  }
+
+  .pricing-td {
+    padding: var(--space-4) var(--space-6);
+    font-size: 0.9375rem;
+    color: var(--color-text-primary);
+    background: #ffffff;
+  }
+
+  .pricing-td-price {
+    text-align: right;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-navy);
+    white-space: nowrap;
+  }
+</style>
