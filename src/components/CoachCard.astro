@@ -35,10 +35,9 @@ const { name, title, weapons, bio, image, imageAlt, bookable = false } = Astro.p
 
     {bookable && (
       <a
-        href="#"
+        href="/classes/private"
         class="btn btn-outline coach-cta"
-        data-todo="cal.com"
-        aria-label={`Book a private lesson with ${name}`}
+        aria-label="View private lesson details"
       >
         Book a Lesson
       </a>
