@@ -1,6 +1,6 @@
 export const SITE_NAME = "Metro Tacoma Fencing Club";
 export const SITE_TAGLINE = "Where Champions Are Forged";
-export const ZENPLANNER_EMBED_URL = "https://mtfc.sites.zenplanner.com/login.cfm";
+export const ZENPLANNER_LOGIN_URL = "https://mtfc.sites.zenplanner.com/login.cfm";
 export const SOCIAL = {
   instagram: "https://www.instagram.com/metrotacomafencing/",
   facebook: "https://www.facebook.com/Metro-Tacoma-Fencing-Club-179585682221/",

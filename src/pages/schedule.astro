@@ -1,7 +1,7 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 import ScheduleTable from '../components/ScheduleTable.astro';
-import ZenPlannerEmbed from '../components/ZenPlannerEmbed.astro';
+import { ZENPLANNER_LOGIN_URL } from '../config/site';
 ---
 
 <PageLayout
@@ -77,8 +77,23 @@ import ZenPlannerEmbed from '../components/ZenPlannerEmbed.astro';
       </div>
     </section>
 
-    <!-- ZenPlanner embed -->
-    <ZenPlannerEmbed />
+    <!-- ZenPlanner link -->
+    <section class="section zenplanner-section" aria-labelledby="zenplanner-heading">
+      <div class="container">
+        <div class="zenplanner-card">
+          <h2 id="zenplanner-heading" class="zenplanner-heading">Class Schedule &amp; Registration</h2>
+          <p class="zenplanner-desc">View the current class schedule and manage your membership through ZenPlanner.</p>
+          <a
+            href={ZENPLANNER_LOGIN_URL}
+            class="btn btn-primary zenplanner-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open ZenPlanner →
+          </a>
+        </div>
+      </div>
+    </section>
   </div>
 </PageLayout>
 
@@ -103,7 +118,7 @@ import ZenPlannerEmbed from '../components/ZenPlannerEmbed.astro';
     height: 200%;
     top: -50%;
     right: 20%;
-    background: linear-gradient(to bottom, transparent, rgba(0, 224, 133, 0.2), transparent);
+    background: linear-gradient(to bottom, transparent, rgba(248, 131, 121, 0.2), transparent);
     transform: rotate(-30deg);
   }
 
@@ -155,27 +170,27 @@ import ZenPlannerEmbed from '../components/ZenPlannerEmbed.astro';
   }
 
   .level--beginner {
-    color: var(--color-mountain-meadow);
-    background: rgba(44, 194, 149, 0.1);
-    border: 1px solid rgba(44, 194, 149, 0.25);
+    color: var(--color-navy);
+    background: rgba(4, 30, 66, 0.07);
+    border: 1px solid rgba(4, 30, 66, 0.18);
   }
 
   .level--intermediate {
-    color: var(--color-accent);
-    background: rgba(0, 224, 133, 0.08);
-    border: 1px solid rgba(0, 224, 133, 0.2);
+    color: var(--color-coral);
+    background: rgba(248, 131, 121, 0.08);
+    border: 1px solid rgba(248, 131, 121, 0.25);
   }
 
   .level--advanced {
-    color: var(--color-pistachio);
-    background: rgba(176, 212, 202, 0.08);
-    border: 1px solid rgba(176, 212, 202, 0.2);
+    color: var(--color-navy);
+    background: rgba(4, 30, 66, 0.05);
+    border: 1px solid rgba(4, 30, 66, 0.12);
   }
 
   .level--competitive {
-    color: var(--color-anti-flash-white);
-    background: rgba(241, 247, 246, 0.06);
-    border: 1px solid rgba(241, 247, 246, 0.15);
+    color: var(--color-text-secondary);
+    background: rgba(75, 85, 99, 0.07);
+    border: 1px solid rgba(75, 85, 99, 0.2);
   }
 
   /* Open fencing */
@@ -237,5 +252,31 @@ import ZenPlannerEmbed from '../components/ZenPlannerEmbed.astro';
     font-weight: var(--font-weight-semibold);
     color: var(--color-accent);
     white-space: nowrap;
+  }
+
+  /* ZenPlanner link card */
+  .zenplanner-section {
+    background: var(--color-bg-surface);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .zenplanner-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    max-width: 560px;
+  }
+
+  .zenplanner-heading {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+
+  .zenplanner-desc {
+    color: var(--color-text-secondary);
+    font-size: 0.9375rem;
+  }
+
+  .zenplanner-btn {
+    align-self: flex-start;
   }
 </style>
