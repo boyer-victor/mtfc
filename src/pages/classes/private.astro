@@ -1,0 +1,110 @@
+---
+import ClassPageLayout from '../../components/ClassPageLayout.astro';
+
+const pricing = [
+  { label: 'Coach Kim', price: '$45 per 25-minute session' },
+  { label: 'Coach Chung', price: '$50 per 25-minute session' },
+];
+---
+
+<ClassPageLayout
+  title="Private Lessons — Metro Tacoma Fencing Club"
+  description="One-on-one fencing instruction with Coach Kim or Coach Chung — the fastest path to meaningful improvement."
+  pageTitle="Private Lessons"
+  pageSubtitle="The fastest path to meaningful improvement."
+>
+  <section class="section content-section">
+    <div class="container content-body">
+      <p>Private lessons offer focused one-on-one instruction tailored entirely to your development as a fencer. Whether you're working on a specific weakness or preparing for a tournament, a private session is the most efficient use of your training time.</p>
+
+      <div class="pricing-callout" aria-label="Private lesson pricing">
+        <h2 class="pricing-heading">Pricing</h2>
+        <table class="pricing-table" aria-label="Private lesson rates">
+          <tbody>
+            {pricing.map((row) => (
+              <tr class="pricing-row">
+                <td class="pricing-td">{row.label}</td>
+                <td class="pricing-td pricing-td-price">{row.price}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p class="pricing-note">If you are not enrolled in group classes, a club membership fee of $80/mo (or a drop-in fee) is required in addition to lesson fees.</p>
+      </div>
+    </div>
+  </section>
+</ClassPageLayout>
+
+<style>
+  .content-section {
+    background: #ffffff;
+  }
+
+  .content-body {
+    max-width: 68ch;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .content-body > p {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--color-text-primary);
+  }
+
+  .pricing-callout {
+    background: var(--color-gray-100, #f5f5f5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .pricing-heading {
+    padding: var(--space-4) var(--space-6);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    border-bottom: 1px solid var(--color-border);
+    margin: 0;
+  }
+
+  .pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .pricing-row {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .pricing-row:last-child {
+    border-bottom: none;
+  }
+
+  .pricing-td {
+    padding: var(--space-4) var(--space-6);
+    font-size: 0.9375rem;
+    color: var(--color-text-primary);
+    background: #ffffff;
+  }
+
+  .pricing-td-price {
+    text-align: right;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-navy);
+    white-space: nowrap;
+  }
+
+  .pricing-note {
+    padding: var(--space-4) var(--space-6);
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+    background: var(--color-gray-100, #f5f5f5);
+    border-top: 1px solid var(--color-border);
+    margin: 0;
+  }
+</style>

@@ -1,0 +1,54 @@
+---
+import ClassPageLayout from '../../components/ClassPageLayout.astro';
+---
+
+<ClassPageLayout
+  title="New to Fencing — Metro Tacoma Fencing Club"
+  description="Never held a sword? Our introductory fencing program is exactly where you belong. Loaner gear available for your first session."
+  pageTitle="New to Fencing"
+  pageSubtitle="No experience needed — we'll take it from there."
+>
+  <section class="section content-section">
+    <div class="container content-body">
+      <p>Fencing is more accessible than you think. If you've never held a sword before, our introductory program is exactly where you belong.</p>
+      <p>Equipment is available to borrow for your first session so you don't need to buy anything to try it out. Our coaches will walk you through the basics of footwork, blade work, and safe fencing practice.</p>
+
+      <div class="callout">
+        <p>Ready to try it? Our 4-week intro course runs regularly — log in to ZenPlanner to see current availability and register.</p>
+      </div>
+    </div>
+  </section>
+</ClassPageLayout>
+
+<style>
+  .content-section {
+    background: #ffffff;
+  }
+
+  .content-body {
+    max-width: 68ch;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .content-body p {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--color-text-primary);
+  }
+
+  .callout {
+    background: var(--color-gray-100, #f5f5f5);
+    border-left: 4px solid var(--color-coral);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+  }
+
+  .callout p {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+</style>
